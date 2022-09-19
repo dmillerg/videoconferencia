@@ -1,0 +1,9 @@
+.in {
+    border: none;
+    border-bottom: 1px solid #FFF;
+    outline: none;
+    background-color: transparent;
+    padding-left: 10px;
+    margin-bottom: -10px;
+    margin-inline: 10px;
+}

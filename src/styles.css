@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.menus{
+    top: 50px;
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+}
+
+.bg-darki{
+    background-color: #2a2f34;
+}
