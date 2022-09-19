@@ -1,12 +1,14 @@
 <form action="" class="text-center">
-    <i class="bi bi-person display-1 text-muted"></i>
-    <p class="text-muted">Por favor autentiquese primero </p>
-    <div class="input-container m-2">
-        <label class="text-muted" for="usuario"><i class="bi bi-person"></i> :</label>
-        <input type="text" id="usuario" class="in">
+    <i class="bi bi-person display-1 text-white"></i>
+    <p class="text-white">Por favor introduzca su usuario y contraseña antes de comenzar</p>
+    <div class="input-container m-2 d-flex flex-row justify-content-center align-item-center">
+        <label class="text-white" for="usuario"><i class="bi bi-person"></i></label>
+        <input type="text" id="usuario" placeholder="usuario" class="in">
     </div>
     <div class="input-container m-2">
-        <label class="text-muted" for="password"><i class="bi bi-key"></i> :</label>
-        <input type="password" id="password" class="in">
+        <label class="text-white" for="password"><i class="bi bi-key"></i></label>
+        <input type="password" placeholder="password"  id="password" class="in">
     </div>
+    <button class="btn btn-dark shadow-lg">Aceptar</button>
+    <p class="text-muted small">Si ha olvidado la contraseña por favor contacte con el administrador del sitio</p>
 </form>
