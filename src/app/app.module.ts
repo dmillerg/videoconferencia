@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { VideosComponent } from './pages/videos/videos.component';
+import { MenuComponent } from './pages/menu/menu.component';
+import { MenuModule } from './pages/menu/menu.module';
+import { MenuRoutingModule } from './pages/menu/menu-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    VideosComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MenuModule,
+    MenuRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
