@@ -4,6 +4,8 @@ import { MenuRoutingModule } from './menu-routing.module';
 import { VideosComponent } from '../videos/videos.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ListadoComponent } from './listado/listado.component';
+import { SolicitudComponent } from './solicitud/solicitud.component';
+import { CalendarioComponent } from 'src/app/components/calendario/calendario.component';
 
 
 
@@ -12,7 +14,8 @@ import { ListadoComponent } from './listado/listado.component';
     VideosComponent,
     MenuItemComponent,
     ListadoComponent,
-
+    SolicitudComponent,
+    CalendarioComponent
   ],
   imports: [
     CommonModule,

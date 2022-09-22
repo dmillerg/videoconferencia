@@ -1,0 +1,22 @@
+<div class="text-center d-flex justify-content-center align-item-center flex-column">
+    <div class="d-flex flex-row justify-content-between align-item-center">
+        <button class="btn h2 text-muted" (click)="cambiarMes('menos')"><i class="bi bi-chevron-left"></i></button>
+        <h1 class="text-white text-shadow">{{fecha | date: 'MMMM'}}</h1>
+        <button class="btn h2 text-muted" (click)="cambiarMes('mas')"><i class="bi bi-chevron-right"></i></button>
+    </div>
+    <h5 class="text-muted small">{{fecha | date : 'yyyy'}}</h5>
+    <ol>
+        <li class="day-name">Lun</li>
+        <li class="day-name">Mar</li>
+        <li class="day-name">Mié</li>
+        <li class="day-name">Jue</li>
+        <li class="day-name">Vie</li>
+        <li class="day-name">Sáb</li>
+        <li class="day-name">Dom</li>
+
+        <li *ngFor="let item of dias;let i = index" class="dia rounded"
+            [ngClass]="{'selected': day==(item+1), 'present': (item+1) == now.date()}" (click)="select(item+1)"
+            [ngStyle]="{'grid-column-start': i== 0?weeknumber:0}">
+            {{item+1}}</li>
+    </ol>
+</div>

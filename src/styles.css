@@ -55,3 +55,18 @@
     transition: all .3s ease-in-out;
 
 }
+
+.in {
+    border: none;
+    border-bottom: 1px solid #FFF;
+    outline: none;
+    background-color: transparent;
+    padding-left: 10px;
+    color: white;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.text-shadow{
+   text-shadow: 3px 0px 17px rgba(0,0,0,0.88);
+}

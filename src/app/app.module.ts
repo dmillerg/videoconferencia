@@ -9,18 +9,18 @@ import { VideosComponent } from './pages/videos/videos.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { MenuModule } from './pages/menu/menu.module';
 import { MenuRoutingModule } from './pages/menu/menu-routing.module';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MenuModule,
     MenuRoutingModule,
   ],
   providers: [],
