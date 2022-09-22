@@ -15,8 +15,10 @@ export class CalendarioComponent implements OnInit {
   anno: number = this.now.year();
   month: number = this.now.month();
   day: number = this.now.date();
-  selected: any;
-  not_allowed: any[]=[];
+  selected: any = this.now;
+  not_allowed: any[] = [moment('2022-09-26')];
+  occupied_partial: any[] = [moment('2022-09-27')];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -49,7 +51,23 @@ export class CalendarioComponent implements OnInit {
   select(dia: number) {
     this.day = dia;
     this.selected = moment(moment(this.anno + '-' + ((this.month + 1) < 10 ? '0' + (this.month + 1) : (this.month + 1)) + '-' + ((this.day < 10) ? '0' + this.day : this.day)))
-  console.log(this.selected);
-  
+  }
+
+  not_alloweds(day: number) {
+    var b = false;
+    this.not_allowed.forEach(item => {
+      if (item.date() == day && item.month() == this.month) b = true;
+    })
+    console.log('returrn ', b);
+    return b;
+  }
+
+  occupied_partials(day: number) {
+    var b = false;
+    this.not_allowed.forEach(item => {
+      if (item.date() == day && item.month() == this.month) b = true;
+    })
+    console.log('returrn ', b);
+    return b;
   }
 }

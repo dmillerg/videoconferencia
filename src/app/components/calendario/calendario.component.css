@@ -1,52 +1,65 @@
 ol {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    list-style: none;
-    padding: 0;
-    color: white;
-  }
-  
-  .dia {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .dia:hover {
-    border-radius: 0.1em;
-    border: 1px solid rgb(109, 109, 109);
-    text-shadow: 3px 0px 17px rgba(0, 0, 0, 0.88);
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .dia.selected {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: #266346;
-    border: 1px solid #266346;
-  }
-  
-  .dia.present {
-    color: #2458a6;
-    border: 1px solid #2458a6;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .dia.occupied-total {
-    color: #7e2c34;
-    border: 1px solid #7e2c34;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .dia.occupied-partial{
-    color: #9a7d27;
-    border: 1px solid #9a7d27;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .dia.not-available{
-    color: #909091;
-    border: 1px solid #909091;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  list-style: none;
+  padding: 0;
+  color: white;
+}
+
+.dia {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.dia:hover {
+  border-radius: 0.1em;
+  border: 1px solid rgb(109, 109, 109);
+  text-shadow: 3px 0px 17px rgba(0, 0, 0, 0.88);
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .3s ease-in-out;
+
+}
+
+.dia.selected {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #266346;
+  border: 1px solid #266346;
+  transition: all .3s ease-in-out;
+
+}
+
+.dia.present {
+  color: #2458a6;
+  border: 1px solid #2458a6;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .3s ease-in-out;
+
+}
+
+.dia.occupied-total {
+  color: #7e2c34;
+  border: 1px solid #7e2c34;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .3s ease-in-out;
+
+}
+
+.dia.occupied-partial {
+  color: #9a7d27;
+  border: 1px solid #9a7d27;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .3s ease-in-out;
+
+}
+
+.dia.not-available {
+  color: #909091;
+  border: 1px solid #909091;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .3s ease-in-out;
+  cursor: not-allowed;
+}

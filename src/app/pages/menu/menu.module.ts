@@ -6,6 +6,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ListadoComponent } from './listado/listado.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { CalendarioComponent } from 'src/app/components/calendario/calendario.component';
+import { CalendarComponent } from 'src/app/cal/calendar.component';
 
 
 
@@ -15,7 +16,8 @@ import { CalendarioComponent } from 'src/app/components/calendario/calendario.co
     MenuItemComponent,
     ListadoComponent,
     SolicitudComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
