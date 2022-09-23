@@ -7,7 +7,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { VideosComponent } from './pages/videos/videos.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/menu', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'inicio', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent, loadChildren: () => import('./pages/menu/menu-routing.module').then(mod => mod.MenuRoutingModule),  },

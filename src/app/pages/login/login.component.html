@@ -4,13 +4,13 @@
         <p class="text-white">Por favor introduzca su usuario y contraseña antes de comenzar</p>
         <div class="input-container m-2 d-flex flex-row justify-content-center align-item-center">
             <label class="text-white" for="usuario"><i class="bi bi-person"></i></label>
-            <input type="text" id="usuario" placeholder="usuario" class="in">
+            <input type="text" id="usuario" placeholder="usuario" name="usuario" [(ngModel)]="usuario" class="in">
         </div>
         <div class="input-container m-2">
             <label class="text-white" for="password"><i class="bi bi-key"></i></label>
-            <input type="password" placeholder="password" id="password" class="in">
+            <input type="password" placeholder="password" id="password" name="password" [(ngModel)]="password" class="in">
         </div>
-        <button class="btn btn-dark shadow-lg">Aceptar</button>
+        <button class="btn btn-dark shadow-lg" (click)="login()">Aceptar</button>
         <p class="text-muted small">Si ha olvidado la contraseña por favor contacte con el administrador del sitio</p>
     </form>
 </div>

@@ -4,7 +4,7 @@
         <h1 class="text-white text-shadow">{{fecha | date: 'MMMM'}}</h1>
         <button class="btn h2 text-muted" (click)="cambiarMes('mas')"><i class="bi bi-chevron-right"></i></button>
     </div>
-    <h5 class="text-muted small">{{fecha | date : 'yyyy'}}</h5>
+    <h5 class="text-muted small ">{{fecha | date : 'yyyy'}}</h5>
     <ol>
         <li class="day-name">Lun</li>
         <li class="day-name">Mar</li>
@@ -14,12 +14,14 @@
         <li class="day-name">Sáb</li>
         <li class="day-name">Dom</li>
 
-        <li *ngFor="let item of dias;let i = index" class="dia rounded"
-            [ngClass]="{'selected': day==(item+1) && selected.month() == month,
-             'present': (item+1) == now.date() && month == now.month(),
-            'not-available': not_alloweds(item+1),
-            'occupied_partial': occupied_partials(item+1)}" (click)="select(item+1)"
-            [ngStyle]="{'grid-column-start': i== 0?weeknumber:0}">
-            {{item+1}}</li>
+        <button *ngFor="let item of dias;let i = index" class="dia rounded menu" [ngClass]="{'selected': day==(item.dia) && selected.month() == month,
+             'present': (item.dia) == now.date() && month == now.month(),
+            'not-available': not_alloweds(item.dia)}" [class]="occupied_partials(item)" (click)="select(item.dia)"
+            [ngStyle]="{'grid-column-start': i== 0?weeknumber:0}" [disabled]="occupied_partials(item)=='occupied-total'">
+            {{item.dia}}
+            <div class="menu-list rounded border border-danger shadow-sm bg-dark text-center">
+                <div *ngFor="let item2 of item.detalles" class="menu-item rounded text-danger small">{{item2}}</div>
+            </div>
+        </button>
     </ol>
 </div>

@@ -9,6 +9,10 @@ ol {
 .dia {
   height: 40px;
   display: flex;
+  background-color: transparent;
+  border: none;
+  color: #909091;
+  outline: none;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -61,5 +65,9 @@ ol {
   border: 1px solid #909091;
   background-color: rgba(0, 0, 0, 0.2);
   transition: all .3s ease-in-out;
+  cursor: not-allowed;
+}
+
+.dia:disabled{
   cursor: not-allowed;
 }

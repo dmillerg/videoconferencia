@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-calendario',
@@ -9,7 +10,7 @@ import * as moment from 'moment';
 export class CalendarioComponent implements OnInit {
 
   now = moment();
-  dias: number[] = [];
+  dias: any[] = [];
   weeknumber: number = 0;
   fecha: string = '';
   anno: number = this.now.year();
@@ -17,18 +18,23 @@ export class CalendarioComponent implements OnInit {
   day: number = this.now.date();
   selected: any = this.now;
   not_allowed: any[] = [moment('2022-09-26')];
-  occupied_partial: any[] = [moment('2022-09-27')];
+  dates: any[] = [];
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     this.rellenarCalendario();
+    this.getDates();
   }
 
   rellenarCalendario() {
     const m = moment(this.anno + '-' + ((this.month + 1) < 10 ? '0' + (this.month + 1) : (this.month + 1)) + '-01');
     const cant = Number(m.daysInMonth());
-    this.dias = Array(cant).fill(0).map((x, i) => i);
+    // this.dias = Array(cant).fill(0).map((x, i) => {dia: i, });
+    for (let i = 1; i < cant; i++) {
+      this.dias.push({ dia: i, detalles: [] })
+    }
+
     this.weeknumber = m.weekday();
     this.fecha = m.toLocaleString();
   }
@@ -42,6 +48,14 @@ export class CalendarioComponent implements OnInit {
       this.month = this.month == 0 ? 11 : this.month - 1;
     }
     this.rellenarCalendario();
+  }
+
+  getDates() {
+    this.api.getVideoConferencias().subscribe(result => {
+      this.dates = result;
+      console.log(result);
+
+    })
   }
 
   cambiarAnno(opcion: string) {
@@ -58,16 +72,19 @@ export class CalendarioComponent implements OnInit {
     this.not_allowed.forEach(item => {
       if (item.date() == day && item.month() == this.month) b = true;
     })
-    console.log('returrn ', b);
+    // console.log('returrn ', b);
     return b;
   }
 
-  occupied_partials(day: number) {
-    var b = false;
-    this.not_allowed.forEach(item => {
-      if (item.date() == day && item.month() == this.month) b = true;
-    })
-    console.log('returrn ', b);
-    return b;
+  occupied_partials(day: any) {
+    var cont = 0;
+    let entero = false;
+    this.dates.forEach(item => {
+      if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana || item.tarde)) {
+        day.detalles.push(`videoconferencia:${item.nombre} \n descripcion: ${item.descripcion} \n horario: ${item.hora_inicio} - ${item.hora_fin}`)
+        cont++; }
+      if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana && item.tarde)) entero = true;
+    });
+    return entero ? 'occupied-total' : cont == 1 ? 'occupied-partial' : cont == 2 ? 'occupied-total' : '';
   }
 }

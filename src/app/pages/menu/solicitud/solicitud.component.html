@@ -1,21 +1,58 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-8">
-            <form action="" class="solicitud-form p-4 border border-secondary shadow-sm rounded">
-                <h1 class="h3 text-white">Solicitud de videoconferencia</h1>
-                <div class="input-content mt-4">
-                    <label for="nombre" class="in-text text-muted">nombre</label>
-                    <input type="text" id="nombre" class="in">
+            <h1 class="h3 text-white">Solicitud de videoconferencia</h1>
+            <form action=""
+                class="solicitud-form p-4 border border-secondary shadow-sm rounded d-flex flex-row flex-wrap justify-content-between">
+
+                <div class="input-content mt-4 rounded border border-secondary position-relative">
+                    <label for="nombre" class="in-text text-muted position-absolute small">Nombre:</label>
+                    <input type="text" id="nombre" class="in small" placeholder="Nombre de la videoconferencia"
+                        name="nombre" [(ngModel)]="solicitud.nombre">
                 </div>
-                <div class="input-content mt-4">
-                    <label for="nombre" class="in-text text-muted">descripcion</label>
-                    <input type="text" id="descripcion" class="in">
+                <div class="input-content mt-4 rounded border border-secondary position-relative">
+                    <label for="nombre" class="in-text text-muted position-absolute small">Descripción:</label>
+                    <input type="text" id="descripcion" class="in"
+                        placeholder="Descripción sobre que trata la videoconferencia, asi como sindicatos asociados.."
+                        name="descripcion" [(ngModel)]="solicitud.descripcion">
                 </div>
-                <div class="input-content mt-4">
-                    <label for="nombre" class="in-text text-muted">citado</label>
-                    <input type="text" id="citado" class="in">
+                <div class="input-content mt-4 rounded border border-secondary position-relative">
+                    <label for="nombre" class="in-text text-muted position-absolute small">Citado:</label>
+                    <input type="text" id="citado" class="in" placeholder="Persona que la solicita" name="citado"
+                        [(ngModel)]="solicitud.citado_por">
                 </div>
-                <button class="btn btn-dark mt-4">Aceptar</button>
+                <div class="input-content mt-4 rounded border border-secondary position-relative">
+                    <label for="horario" class="in-text text-muted position-absolute small">Horario:</label>
+                    <select id="horario" class="in bg-darki small shadow-sm" name="horario"
+                        placeholder="Horario a realizar la videoconferencia">
+                        <option value="" (click)="solicitud.mannana=true;solicitud.tarde=false;"
+                            class="bg-dark text-muted">Mañana</option>
+                        <option value="" (click)="solicitud.mannana=false;solicitud.tarde=true;"
+                            class="bg-dark text-muted">Tarde</option>
+                        <option value="" (click)="solicitud.mannana=true;solicitud.tarde=true;"
+                            class="bg-dark text-muted">Todo el dia</option>
+                    </select>
+                </div>
+
+                <div class="input-content mt-4 rounded border border-secondary position-relative">
+                    <label for="hora_ini" class="in-text text-muted position-absolute small">Hora inicio:</label>
+                    <input type="time" class="in" placeholder="Hora inicio" name="hora_inicio"
+                        [min]="solicitud.mannana?'08:00':'14:00'" [max]="solicitud.mannana?'11:30':'16:30'"
+                        [(ngModel)]="solicitud.hora_inicio">
+                </div>
+                <div class="input-content mt-4 rounded border border-secondary position-relative">
+                    <label for="hora_fin" class="in-text text-muted position-absolute small">Hora final:</label>
+                    <input type="time" class="in" placeholder="Hora final" name="hora_fin"
+                    [min]="solicitud.hora_inicio" [max]="solicitud.mannana?'11:30':'16:30'"
+                        [(ngModel)]="solicitud.hora_fin">
+                </div>
+                <div class="input-content mt-4 rounded border border-secondary position-relative">
+                    <label for="hora_fin" class="in-text text-muted position-absolute small">Adjunto:</label>
+                    <input type="file" class="in" placeholder="Comprimido con los archivos">
+                    <label for="" class="p-2 small text-muted">Tenga presente que solo tiene hasta el dia antes para
+                        subir los archivos, luego este campo pasará a estar bloqueado y no podra editarse</label>
+                </div>
+                <button class="btn btn-dark mt-4" (click)="addVideoConferencia()">Aceptar</button>
                 <!-- <div class="input-content">
                     <label for="nombre" class="in-text">nombre</label>
                     <input type="text" id="nombre" class="in">
@@ -23,7 +60,6 @@
             </form>
         </div>
         <div class="col-sm-4">
-            <!-- <app-calendar></app-calendar> -->
             <app-calendario></app-calendario>
         </div>
     </div>
