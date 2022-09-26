@@ -17,7 +17,7 @@
         <button *ngFor="let item of dias;let i = index" class="dia rounded menu" [ngClass]="{'selected': day==(item.dia) && selected.month() == month,
              'present': (item.dia) == now.date() && month == now.month(),
             'not-available': not_alloweds(item.dia)}" [class]="occupied_partials(item)" (click)="select(item.dia)"
-            [ngStyle]="{'grid-column-start': i== 0?weeknumber:0}" [disabled]="occupied_partials(item)=='occupied-total'">
+            [ngStyle]="{'grid-column-start': i== 0?weeknumber:0}" [disabled]="not_alloweds(item.dia)">
             {{item.dia}}
             <div class="menu-list rounded border shadow-sm bg-dark text-center calendar-menu" *ngIf="item.detalles.length>0">
                 <div *ngFor="let item2 of item.detalles" class="menu-item rounded small">{{item2}}</div>

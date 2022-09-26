@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-8">
             <h1 class="h3 text-white">Solicitud de videoconferencia</h1>
             <form action=""
                 class="solicitud-form p-4 border border-secondary shadow-sm rounded d-flex flex-row flex-wrap justify-content-between">
@@ -42,9 +42,8 @@
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative">
                     <label for="hora_fin" class="in-text text-muted position-absolute small">Hora final:</label>
-                    <input type="time" class="in" placeholder="Hora final" name="hora_fin"
-                    [min]="solicitud.hora_inicio" [max]="solicitud.mannana?'11:30':'16:30'"
-                        [(ngModel)]="solicitud.hora_fin">
+                    <input type="time" class="in" placeholder="Hora final" name="hora_fin" [min]="solicitud.hora_inicio"
+                        [max]="solicitud.mannana?'11:30':'16:30'" [(ngModel)]="solicitud.hora_fin">
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative">
                     <label for="hora_fin" class="in-text text-muted position-absolute small">Adjunto:</label>
@@ -61,6 +60,39 @@
         </div>
         <div class="col-sm-3">
             <app-calendario></app-calendario>
+        </div>
+        <div class="col-sm-1 d-flex justify-content-center align-item-center flex-column">
+            <div class="menu bg-danger text-danger leyenda rounded shadow-md mt-1" style="width: 50%;height: 20px;">
+                <div class="menu-list rounded border shadow-sm bg-dark border-danger text-center">
+                    <div class="menu-item rounded small">Dia ocupado totalmente</div>
+                </div>
+            </div>
+            <div class="menu bg-warning text-warning leyenda rounded shadow-md mt-1" style="width: 50%;height: 20px;">
+                <div class="menu-list rounded border shadow-sm bg-dark border-warning text-center">
+                    <div class="menu-item rounded small">Parcialmente ocupado</div>
+                </div>
+            </div>
+            <div class="menu bg-success text-success leyenda rounded shadow-md mt-1" style="width: 50%;height: 20px;">
+                <div class="menu-list rounded border shadow-sm bg-dark border-success text-center">
+                    <div class="menu-item rounded small">Dia seleccionado</div>
+                </div>
+            </div>
+            <div class="menu bg-primary text-primary leyenda rounded shadow-md mt-1" style="width: 50%;height: 20px;">
+                <div class="menu-list rounded border shadow-sm bg-dark border-primary text-center">
+                    <div class="menu-item rounded small">Dia actual</div>
+                </div>
+            </div>
+            <div class="menu bg-info text-info leyenda rounded shadow-md mt-1" style="width: 50%;height: 20px;">
+                <div class="menu-list rounded border shadow-sm bg-dark border-info text-center">
+                    <div class="menu-item rounded small">Pendiente a aprobacion</div>
+                </div>
+            </div>
+            <div class="menu bg-secondary text-muted leyenda rounded shadow-md mt-1" style="width: 50%;height: 20px;">
+                <div class="menu-list rounded border shadow-sm bg-dark border-secondary text-center">
+                    <div class="menu-item rounded small">Dia deshabilitado por otras operaciones</div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>

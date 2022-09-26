@@ -21,3 +21,10 @@ option{
   font-size: small;
   text-overflow: ellipsis;
 }
+
+.leyenda.menu .menu-list{
+  padding: 10px;
+  width: fit-content;
+  /* white-space: nowrap; */
+}
+
