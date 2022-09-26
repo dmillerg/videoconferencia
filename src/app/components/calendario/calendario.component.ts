@@ -28,6 +28,7 @@ export class CalendarioComponent implements OnInit {
   }
 
   rellenarCalendario() {
+    this.dias = [];
     const m = moment(this.anno + '-' + ((this.month + 1) < 10 ? '0' + (this.month + 1) : (this.month + 1)) + '-01');
     const cant = Number(m.daysInMonth());
     // this.dias = Array(cant).fill(0).map((x, i) => {dia: i, });
