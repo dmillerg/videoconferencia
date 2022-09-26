@@ -17,7 +17,7 @@ export class CalendarioComponent implements OnInit {
   month: number = this.now.month();
   day: number = this.now.date();
   selected: any = this.now;
-  not_allowed: any[] = [moment('2022-09-26')];
+  not_allowed: any[] = [moment('2022-09-23')];
   dates: any[] = [
     { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-29', mannana: 1, tarde: 0 },
     { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-30', mannana: 0, tarde: 1 },
@@ -88,6 +88,7 @@ export class CalendarioComponent implements OnInit {
     this.dates.forEach(item => {
       if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana && item.tarde)) {
         entero = true;
+        day.detalles.push(`videoconferencia:${item.nombre} \n descripcion: ${item.descripcion} \n horario: ${item.hora_inicio} - ${item.hora_fin}`)
       } else if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana || item.tarde)) {
         day.detalles.push(`videoconferencia:${item.nombre} \n descripcion: ${item.descripcion} \n horario: ${item.hora_inicio} - ${item.hora_fin}`)
         cont++;
