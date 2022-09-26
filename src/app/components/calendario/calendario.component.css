@@ -71,3 +71,8 @@ ol {
 .dia:disabled{
   cursor: not-allowed;
 }
+
+.calendar-menu{
+  max-height: 200px;
+  overflow-y: auto;
+}

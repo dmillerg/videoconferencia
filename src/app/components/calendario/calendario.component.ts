@@ -18,7 +18,11 @@ export class CalendarioComponent implements OnInit {
   day: number = this.now.date();
   selected: any = this.now;
   not_allowed: any[] = [moment('2022-09-26')];
-  dates: any[] = [];
+  dates: any[] = [
+    { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-29', mannana: 1, tarde: 0 },
+    { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-30', mannana: 0, tarde: 1 },
+    { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-28', mannana: 1, tarde: 1 },
+  ];
 
   constructor(private api: ApiService) { }
 
@@ -32,7 +36,7 @@ export class CalendarioComponent implements OnInit {
     const m = moment(this.anno + '-' + ((this.month + 1) < 10 ? '0' + (this.month + 1) : (this.month + 1)) + '-01');
     const cant = Number(m.daysInMonth());
     // this.dias = Array(cant).fill(0).map((x, i) => {dia: i, });
-    for (let i = 1; i < cant; i++) {
+    for (let i = 1; i <= cant; i++) {
       this.dias.push({ dia: i, detalles: [] })
     }
 
@@ -52,11 +56,11 @@ export class CalendarioComponent implements OnInit {
   }
 
   getDates() {
-    this.api.getVideoConferencias().subscribe(result => {
-      this.dates = result;
-      console.log(result);
+    // this.api.getVideoConferencias().subscribe(result => {
+    //   this.dates = result;
+    //   console.log(result);
 
-    })
+    // })
   }
 
   cambiarAnno(opcion: string) {
@@ -79,13 +83,18 @@ export class CalendarioComponent implements OnInit {
 
   occupied_partials(day: any) {
     var cont = 0;
+    day.detalles = [];
     let entero = false;
     this.dates.forEach(item => {
-      if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana || item.tarde)) {
+      if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana && item.tarde)) {
+        entero = true;
+      } else if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana || item.tarde)) {
         day.detalles.push(`videoconferencia:${item.nombre} \n descripcion: ${item.descripcion} \n horario: ${item.hora_inicio} - ${item.hora_fin}`)
-        cont++; }
-      if (moment(item.fecha).date() === day.dia && moment(item.fecha).month() === this.month && (item.mannana && item.tarde)) entero = true;
+        cont++;
+      }
+
     });
+
     return entero ? 'occupied-total' : cont == 1 ? 'occupied-partial' : cont == 2 ? 'occupied-total' : '';
   }
 }
