@@ -43,8 +43,6 @@ export class SolicitudComponent implements OnInit {
   constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.selected);
-    
     this.getDates()
     this.rellenarHorasMin();
   }
@@ -52,7 +50,6 @@ export class SolicitudComponent implements OnInit {
   getDates() {
     this.api.getVideoConferencias().subscribe(result => {
       this.dates = result;
-      console.log(result);
     })
   }
 
@@ -107,7 +104,6 @@ export class SolicitudComponent implements OnInit {
   }
 
   rellenarHorasMin() {
-    console.log(this.solicitud.hora_inicio);
     this.minutos_fin = Array(7).fill(0).map((x, i) => i * 10);
 
     if (this.horario == 0) {

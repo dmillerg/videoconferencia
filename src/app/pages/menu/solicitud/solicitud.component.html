@@ -1,7 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-8">
-            <h1 class="h3 text-white">Solicitud de videoconferencia</h1>
+            <div class="d-flex justify-content-start align-item-center">
+                <button class="btn"><i class="bi bi-chevron-left text-white h5" routerLink="../listado"></i></button>
+                <h3 class="h3 text-white">Solicitud de videoconferencia</h3>
+            </div>
             <form action=""
                 class="solicitud-form p-4 border border-secondary shadow-sm rounded d-flex flex-row flex-wrap">
 
@@ -18,13 +21,15 @@
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative" style="width: 31%;">
                     <label for="cantidad" class="in-text text-muted position-absolute small">Personas:</label>
-                    <input type="tex" id="cantidad" class="in" placeholder="cantidad estimada de personas que asistiran" name="cantidad"
-                        [disabled]="disable_all" [(ngModel)]="solicitud.cant_personas">
+                    <input type="tex" id="cantidad" class="in" placeholder="cantidad estimada de personas que asistiran"
+                        name="cantidad" [disabled]="disable_all" [(ngModel)]="solicitud.cant_personas">
                 </div>
-                <div class="input-content mt-4 rounded border border-secondary position-relative px-2" style="width: fit-content;">
+                <div class="input-content mt-4 rounded border border-secondary position-relative px-2"
+                    style="width: fit-content;">
                     <label for="horario" class="in-text text-muted position-absolute small">Horario:</label>
-                    <select id="horario" class="in bg-darki small shadow-sm" name="horario" [(ngModel)]="horario"  (ngModelChange)="rellenarHorasMin()"
-                        [disabled]="disable_all || disable" placeholder="Horario a realizar la videoconferencia">
+                    <select id="horario" class="in bg-darki small shadow-sm" name="horario" [(ngModel)]="horario"
+                        (ngModelChange)="rellenarHorasMin()" [disabled]="disable_all || disable"
+                        placeholder="Horario a realizar la videoconferencia">
                         <option value="0" (click)="solicitud.mannana=true;solicitud.tarde=false;"
                             class="bg-dark text-muted">Mañana</option>
                         <option value="1" (click)="solicitud.mannana=false;solicitud.tarde=true;"
@@ -34,30 +39,42 @@
                     </select>
                 </div>
 
-                <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2" style="width: fit-content;">
+                <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2"
+                    style="width: fit-content;">
                     <label for="hora_ini" class="in-text text-muted position-absolute small">Hora inicio:</label>
-                    <select name="hora_inicio" id="hora_inicio" class="inselect small" [(ngModel)]="solicitud.hora_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
-                        <option class="bg-dark text-muted" *ngFor="let item of horas_inicio" [value]="item">{{item<10?'0'+item:item>12?'0'+(item-12):item}}</option>
+                    <select name="hora_inicio" id="hora_inicio" class="inselect small"
+                        [(ngModel)]="solicitud.hora_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
+                        <option class="bg-dark text-muted" *ngFor="let item of horas_inicio" [value]="item">{{item
+                            <10?'0'+item:item>12?'0'+(item-12):item}}</option>
                     </select>
                     <label for="" class="text-white mt-2">:</label>
-                    <select name="minutos_inicio" id="minutos_inicio" class="inselect small" [(ngModel)]="solicitud.minuto_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
-                        <option class="bg-dark text-muted"  *ngFor="let item of minutos_inicio" [value]="item">{{item<10?'0'+item:item}}</option>
+                    <select name="minutos_inicio" id="minutos_inicio" class="inselect small"
+                        [(ngModel)]="solicitud.minuto_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
+                        <option class="bg-dark text-muted" *ngFor="let item of minutos_inicio" [value]="item">{{item
+                            <10?'0'+item:item}}</option>
                     </select>
-                    <select name="horario" id="" class="inselect small" style="width: 30px;margin-inline: 0px;" [(ngModel)]="horario">
+                    <select name="horario" id="" class="inselect small" style="width: 30px;margin-inline: 0px;"
+                        [(ngModel)]="horario">
                         <option class="bg-dark text-muted" value="0">AM</option>
                         <option class="bg-dark text-muted" value="1">PM</option>
                     </select>
                 </div>
-                <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2" style="width: fit-content;">
+                <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2"
+                    style="width: fit-content;">
                     <label for="hora_fin" class="in-text text-muted position-absolute small">Hora final:</label>
-                    <select name="hora_fin" id="hora_fin" class="inselect small" style="width: 30px;" [(ngModel)]="solicitud.hora_fin"  (ngModelChange)="rellenarHorasMin()">
-                        <option class="bg-dark text-muted" *ngFor="let item of horas_fin">{{item<10?'0'+item:item>12?'0'+(item-12):item}}</option>
+                    <select name="hora_fin" id="hora_fin" class="inselect small" style="width: 30px;"
+                        [(ngModel)]="solicitud.hora_fin" (ngModelChange)="rellenarHorasMin()">
+                        <option class="bg-dark text-muted" *ngFor="let item of horas_fin">{{item<10?'0'+item:item>
+                                12?'0'+(item-12):item}}</option>
                     </select>
                     <label for="" class="text-white mt-2">:</label>
-                    <select name="minuto_fin" id="minuto_fin" class="inselect small" style="width: 30px;" [(ngModel)]="solicitud.minuto_fin"  (ngModelChange)="rellenarHorasMin()">
-                        <option class="bg-dark text-muted" *ngFor="let item of minutos_fin">{{item<10?'0'+item:item}}</option>
+                    <select name="minuto_fin" id="minuto_fin" class="inselect small" style="width: 30px;"
+                        [(ngModel)]="solicitud.minuto_fin" (ngModelChange)="rellenarHorasMin()">
+                        <option class="bg-dark text-muted" *ngFor="let item of minutos_fin">{{item<10?'0'+item:item}}<
+                                /option>
                     </select>
-                    <select name="horario" id="" class="inselect small" style="width: 30px;margin-inline: 0px;" [(ngModel)]="horario">
+                    <select name="horario" id="" class="inselect small" style="width: 30px;margin-inline: 0px;"
+                        [(ngModel)]="horario">
                         <option class="bg-dark text-muted" value="0">AM</option>
                         <option class="bg-dark text-muted" value="1">PM</option>
                     </select>
@@ -70,7 +87,8 @@
                 </div> -->
                 <div class="input-content mt-4 rounded border border-secondary position-relative w-100">
                     <label for="nombre" class="in-text text-muted position-absolute small">Descripción:</label>
-                    <textarea type="text" id="descripcion" class="in" style="height: 100px;overflow-y: auto;" [disabled]="disable_all"
+                    <textarea type="text" id="descripcion" class="in" style="height: 100px;overflow-y: auto;"
+                        [disabled]="disable_all"
                         placeholder="Descripción sobre que trata la videoconferencia, asi como sindicatos asociados.."
                         name="descripcion" [(ngModel)]="solicitud.descripcion"></textarea>
                 </div>
@@ -82,7 +100,8 @@
             </form>
         </div>
         <div class="col-sm-3">
-            <app-calendario [not_allowed]="not_allowed" [selected]="selected" [dates]="dates" (emisor)="select($event)"></app-calendario>
+            <app-calendario [not_allowed]="not_allowed" [selected]="selected" [dates]="dates" (emisor)="select($event)">
+            </app-calendario>
         </div>
         <div class="col-sm-1 d-flex justify-content-center align-item-center flex-column">
             <div class="menu bg-danger text-danger leyenda rounded shadow-md mt-1" style="width: 50%;height: 20px;">
