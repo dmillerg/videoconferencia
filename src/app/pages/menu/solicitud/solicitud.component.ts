@@ -32,7 +32,7 @@ export class SolicitudComponent implements OnInit {
   disable: boolean = false;
 
   not_allowed: any[] = [moment('2022-10-23')];
-  selected: any = this.now;
+  selected: any = this.now.add(4,'days');
   dates: any[] = [];
 
   horas_inicio: number[] = []
@@ -43,8 +43,10 @@ export class SolicitudComponent implements OnInit {
   constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.selected);
+    
     this.getDates()
-this.rellenarHorasMin();
+    this.rellenarHorasMin();
   }
 
   getDates() {
@@ -55,19 +57,26 @@ this.rellenarHorasMin();
   }
 
   addVideoConferencia() {
-    console.log(this.solicitud);
+    // console.log(this.solicitud);
+    // console.log(moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_inicio+':'+this.solicitud.minuto_inicio));
+    // console.log(moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_fin+':'+this.solicitud.minuto_fin));
+    const hi = moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_inicio+':'+this.solicitud.minuto_inicio)
+    const hf = moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_fin+':'+this.solicitud.minuto_fin)
     const formData = new FormData();
     formData.append('nombre', this.solicitud.nombre);
     formData.append('descripcion', this.solicitud.descripcion);
     formData.append('citado_por', this.solicitud.citado_por);
-    formData.append('mannana', this.solicitud.mannana);
-    formData.append('tarde', this.solicitud.tarde);
-    formData.append('hora_inicio', this.solicitud.hora_inicio);
-    formData.append('hora_fin', this.solicitud.hora_fin);
+    formData.append('mannana', this.horario==0?'1':'0');
+    formData.append('tarde',  this.horario==0?'0':'1');
+    formData.append('fecha',  this.selected.toString());
+    formData.append('hora_inicio',hi.toString());
+    formData.append('hora_fin', hf.toString());
     formData.append('estado', this.solicitud.estado);
     formData.append('not_allowed', this.solicitud.not_allowed);
+    formData.append('cant_personas', this.solicitud.cant_personas);
+    
     this.api.addVideoConferencia(formData).subscribe(result => {
-      console.log(result);
+      this.router.navigate(['menu/listado']);
 
     }, error => {
       console.log(error);
@@ -85,35 +94,50 @@ this.rellenarHorasMin();
     if (l.length > 0) {
       this.solicitud.mannana = l[0].mannana
       this.solicitud.tarde = l[0].tarde
-      this.horario = this.solicitud.mannana && this.solicitud.tarde ? 2 : this.solicitud.tarde ? 1 : 0
+      this.horario = this.solicitud.mannana && this.solicitud.tarde ? 2 : this.solicitud.tarde ? 0 : 1
       this.disable = true
     } else {
       this.solicitud.mannana = 0
       this.solicitud.tarde = 0
-      this.horario = 0
+      this.horario = this.solicitud.mannana && this.solicitud.tarde ? 2 : this.solicitud.tarde ? 1 : 0
       this.disable = false
+      this.rellenarHorasMin()
     }
+    
   }
 
   rellenarHorasMin() {
     console.log(this.solicitud.hora_inicio);
-    
+    this.minutos_fin = Array(7).fill(0).map((x, i) => i * 10);
+
     if (this.horario == 0) {
       this.horas_inicio = Array(5).fill(8).map((x, i) => x + i);
-      this.minutos_inicio = Array(7).fill(0).map((x, i) => i*10);
-      this.horas_fin = Array(13-Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
-      this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
+      this.minutos_inicio = Array(7).fill(0).map((x, i) => i * 10);
+      this.horas_fin = Array(13 - Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
+      // this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
+      // this.solicitud.hora_inicio = 8
+      // this.solicitud.hora_fin = 12
+      // this.solicitud.minuto_inicio = 0
+      // this.solicitud.minuto_fin = 0
     }
-    else if(this.horario == 1){
+    else if (this.horario == 1) {
       this.horas_inicio = Array(5).fill(1).map((x, i) => x + i);
-      this.minutos_inicio = Array(7).fill(0).map((x, i) => i*10);
-      this.horas_fin = Array(6-Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
-      this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
-    }else{
+      this.minutos_inicio = Array(7).fill(0).map((x, i) => i * 10);
+      this.horas_fin = Array(6 - Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
+      // this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
+      // this.solicitud.hora_inicio = 1
+      // this.solicitud.hora_fin = 5
+      // this.solicitud.minuto_inicio = 0
+      // this.solicitud.minuto_fin = 0
+    } else {
       this.horas_inicio = Array(10).fill(8).map((x, i) => x + i);
-      this.minutos_inicio = Array(7).fill(0).map((x, i) => i*10);
-      this.horas_fin = Array(18-Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
-      this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
+      this.minutos_inicio = Array(7).fill(0).map((x, i) => i * 10);
+      this.horas_fin = Array(18 - Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
+      // this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
+      // this.solicitud.hora_inicio = 8
+      // this.solicitud.hora_fin = 5
+      // this.solicitud.minuto_inicio = 0
+      // this.solicitud.minuto_fin = 0
     }
   }
 }

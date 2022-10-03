@@ -79,3 +79,11 @@ ol {
   max-height: 200px;
   overflow-y: auto;
 }
+
+.dia.present.selected,
+.dia.occupied-partial.selected{
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #266346;
+  border: 1px solid #266346;
+  transition: all .3s ease-in-out;
+}

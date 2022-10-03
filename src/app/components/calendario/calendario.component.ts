@@ -13,23 +13,22 @@ export class CalendarioComponent implements OnInit {
   dias: any[] = [];
   weeknumber: number = 0;
   fecha: string = '';
+
+  @Input() selected: any;
+  @Input() not_allowed: any[] = [];
+  @Input() dates: any[] = [];
   anno: number = this.now.year();
   month: number = this.now.month();
   day: number = this.now.date();
-  @Input() selected: any;
-  @Input() not_allowed: any[] = [];
-  // dates: any[] = [
-  //   { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-29', mannana: 1, tarde: 0 },
-  //   { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-30', mannana: 0, tarde: 1 },
-  //   { id: 5, nombre: 'Primera', descripcion: 'Esta es la primera videoconferencia planificada', hora_inicio: '09:00 AM', hora_fin: '11:30 AM', fecha: '2022-09-28', mannana: 1, tarde: 1 },
-  // ];
-  @Input() dates: any[]=[];
   @Output() emisor: EventEmitter<any> = new EventEmitter();
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     this.rellenarCalendario();
+    this.anno = this.selected.year();
+    this.month = this.selected.month();
+    this.day = this.selected.date();
   }
 
   rellenarCalendario() {
@@ -64,7 +63,7 @@ export class CalendarioComponent implements OnInit {
 
   select(dia: number) {
     this.day = dia;
-    const date ={
+    const date = {
       day: dia,
       month: this.month,
       anno: this.anno

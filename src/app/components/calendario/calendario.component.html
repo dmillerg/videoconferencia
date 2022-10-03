@@ -20,7 +20,7 @@
             'not-available': not_alloweds(item.dia),
             'past': (item.dia<=(now.date()+3) && month<=now.month() && anno <= now.year()) || (month<now.month() || anno < now.year())}" [class]="occupied_partials(item)"
             (click)="select(item.dia)" [ngStyle]="{'grid-column-start': i== 0?weeknumber:0}"
-            [disabled]="not_alloweds(item.dia) || (item.dia<=(now.date()+3) && month<=now.month() && anno <= now.year()) || (month<now.month() || anno < now.year())">
+            [disabled]="not_alloweds(item.dia) || (item.dia<=(now.date()+3) && month<=now.month() && anno <= now.year()) || (month<now.month() || anno < now.year()) || occupied_partials(item)=='occupied-total' ">
             {{item.dia}}
             <div class="menu-list rounded border shadow-sm bg-dark text-center calendar-menu"
                 *ngIf="item.detalles.length>0">
