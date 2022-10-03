@@ -77,4 +77,13 @@ export class ApiService {
   }
 
 
+   /**
+   * Obtiene todas las videoconferencias planificadas
+   * @returns array videoconferencias
+   */
+    getUsuarios(): Observable<any[]> {
+      let direccion = this.url + 'usuario';
+      return this.http.get<any[]>(direccion, { params: { token: this.storage.retrieve('usuario').token } });
+    }
+
 }

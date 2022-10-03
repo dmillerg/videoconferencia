@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 my-2">
+            <div class="header d-flex">
+                <div class="head text-white" style="width: 12.5%;">nombre</div>
+                <div class="head text-white" style="width: 12.5%;">fecha</div>
+                <div class="head text-white" style="width: 12.5%;">horario</div>
+                <div class="head text-white" style="width: 12.5%;">hora inicio</div>
+                <div class="head text-white" style="width: 12.5%;">hora fin</div>
+                <div class="head text-white" style="width: 12.5%;">estado</div>
+                <div class="head text-white" style="width: 12.5%;">encargado</div>
+                <div class="head text-white" style="width: 12.5%;">salon</div>
+            </div>
+        </div>
+        <div class="col-sm-12 " style="max-height: 300px;overflow-y: auto;">
+           
+            <div class="content d-flex" *ngFor="let item of videoconferencias" >
+                <div class="cont text-muted" style="width: 12.5%;">{{item.nombre}}</div>
+                <div class="cont text-muted" style="width: 12.5%;">{{item.fecha | date: 'short'}}</div>
+                <div class="cont text-muted" style="width: 12.5%;">{{item.mannana && item.tarde?'todo el
+                    día':item.mannana?'mañana':'tarde'}}</div>
+                <div class="cont text-muted" style="width: 12.5%;">{{item.hora_inicio| date: 'HH:mm a'}}</div>
+                <div class="cont text-muted" style="width: 12.5%;">{{item.hora_fin | date: 'HH:mm a'}}</div>
+                <div class="cont text-muted" style="width: 12.5%;">
+                <select name="estado" id="" class="in text-muted" [(ngModel)]="item.estado">
+                    <option value="0">En espera</option>
+                    <option value="1">Aprobado</option>
+                    <option value="2">Denegado</option>
+                </select>
+                </div>
+                <div class="cont text-muted" style="width: 12.5%;">
+                    <select name="" id="" class="in text-muted">
+                        <option value="" *ngFor="let item of tecnicos">{{item.usuario}}</option>
+                    </select>
+                </div>
+                <div class="cont text-muted" style="width: 12.5%;">
+                    <select name="" id="" class="in text-muted">
+                        <option value="0">TELMAN</option>
+                        <option value="1">CELIA</option>
+                        <option value="2">JUAN MARINELLO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

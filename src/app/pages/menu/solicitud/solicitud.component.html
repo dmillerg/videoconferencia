@@ -2,31 +2,32 @@
     <div class="row">
         <div class="col-sm-8">
             <div class="d-flex justify-content-start align-item-center">
-                <button class="btn"><i class="bi bi-chevron-left text-white h5" routerLink="../listado"></i></button>
-                <h3 class="h3 text-white">Solicitud de videoconferencia</h3>
+                <button class="btn" style="margin-top: -5px;"><i class="bi bi-chevron-left text-white h5"
+                        routerLink="../listado"></i></button>
+                <h4 class="h4 text-white">Solicitud de videoconferencia</h4>
             </div>
             <form action=""
                 class="solicitud-form p-4 border border-secondary shadow-sm rounded d-flex flex-row flex-wrap">
 
                 <div class="input-content mt-4 rounded border border-secondary position-relative" style="width: 31%;">
-                    <label for="nombre" class="in-text text-muted position-absolute small">Nombre:</label>
+                    <label for="nombre" class="in-text text-white position-absolute small">Nombre:</label>
                     <input type="text" id="nombre" class="in small" placeholder="Nombre de la videoconferencia"
                         [disabled]="disable_all" name="nombre" [(ngModel)]="solicitud.nombre">
                 </div>
 
                 <div class="input-content mt-4 rounded border border-secondary position-relative" style="width: 31%;">
-                    <label for="nombre" class="in-text text-muted position-absolute small">Citado:</label>
+                    <label for="nombre" class="in-text text-white position-absolute small">Citado:</label>
                     <input type="text" id="citado" class="in" placeholder="Persona que la solicita" name="citado"
                         [disabled]="disable_all" [(ngModel)]="solicitud.citado_por">
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative" style="width: 31%;">
-                    <label for="cantidad" class="in-text text-muted position-absolute small">Personas:</label>
+                    <label for="cantidad" class="in-text text-white position-absolute small">Personas:</label>
                     <input type="tex" id="cantidad" class="in" placeholder="cantidad estimada de personas que asistiran"
                         name="cantidad" [disabled]="disable_all" [(ngModel)]="solicitud.cant_personas">
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative px-2"
                     style="width: fit-content;">
-                    <label for="horario" class="in-text text-muted position-absolute small">Horario:</label>
+                    <label for="horario" class="in-text text-white position-absolute small">Horario:</label>
                     <select id="horario" class="in bg-darki small shadow-sm" name="horario" [(ngModel)]="horario"
                         (ngModelChange)="rellenarHorasMin()" [disabled]="disable_all || disable"
                         placeholder="Horario a realizar la videoconferencia">
@@ -41,17 +42,18 @@
 
                 <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2"
                     style="width: fit-content;">
-                    <label for="hora_ini" class="in-text text-muted position-absolute small">Hora inicio:</label>
+                    <label for="hora_ini" class="in-text text-white position-absolute small">Hora inicio:</label>
                     <select name="hora_inicio" id="hora_inicio" class="inselect small"
                         [(ngModel)]="solicitud.hora_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
                         <option class="bg-dark text-muted" *ngFor="let item of horas_inicio" [value]="item">{{item
-                            <10?'0'+item:item>12?'0'+(item-12):item}}</option>
+                            <10?'0'+item:item>12?'0'+(item-12):item}}
+                        </option>
                     </select>
                     <label for="" class="text-white mt-2">:</label>
                     <select name="minutos_inicio" id="minutos_inicio" class="inselect small"
                         [(ngModel)]="solicitud.minuto_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
                         <option class="bg-dark text-muted" *ngFor="let item of minutos_inicio" [value]="item">{{item
-                            <10?'0'+item:item}}</option>
+                            <10?'0'+item:item}} </option>
                     </select>
                     <select name="horario" id="" class="inselect small" style="width: 30px;margin-inline: 0px;"
                         [(ngModel)]="horario">
@@ -61,7 +63,7 @@
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2"
                     style="width: fit-content;">
-                    <label for="hora_fin" class="in-text text-muted position-absolute small">Hora final:</label>
+                    <label for="hora_fin" class="in-text text-white position-absolute small">Hora final:</label>
                     <select name="hora_fin" id="hora_fin" class="inselect small" style="width: 30px;"
                         [(ngModel)]="solicitud.hora_fin" (ngModelChange)="rellenarHorasMin()">
                         <option class="bg-dark text-muted" *ngFor="let item of horas_fin">{{item<10?'0'+item:item>
@@ -70,8 +72,8 @@
                     <label for="" class="text-white mt-2">:</label>
                     <select name="minuto_fin" id="minuto_fin" class="inselect small" style="width: 30px;"
                         [(ngModel)]="solicitud.minuto_fin" (ngModelChange)="rellenarHorasMin()">
-                        <option class="bg-dark text-muted" *ngFor="let item of minutos_fin">{{item<10?'0'+item:item}}<
-                                /option>
+                        <option class="bg-dark text-muted" *ngFor="let item of minutos_fin">{{item<10?'0'+item:item}}
+                                </option>
                     </select>
                     <select name="horario" id="" class="inselect small" style="width: 30px;margin-inline: 0px;"
                         [(ngModel)]="horario">
@@ -86,7 +88,7 @@
                         subir los archivos, luego este campo pasará a estar bloqueado y no podra editarse</label>
                 </div> -->
                 <div class="input-content mt-4 rounded border border-secondary position-relative w-100">
-                    <label for="nombre" class="in-text text-muted position-absolute small">Descripción:</label>
+                    <label for="nombre" class="in-text text-white position-absolute small">Descripción:</label>
                     <textarea type="text" id="descripcion" class="in" style="height: 100px;overflow-y: auto;"
                         [disabled]="disable_all"
                         placeholder="Descripción sobre que trata la videoconferencia, asi como sindicatos asociados.."

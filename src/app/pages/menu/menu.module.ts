@@ -7,6 +7,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ListadoComponent } from './listado/listado.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { CalendarioComponent } from 'src/app/components/calendario/calendario.component';
+import { AdminSolicitudComponent } from './admin-solicitud/admin-solicitud.component';
 
 
 
@@ -18,6 +19,7 @@ import { CalendarioComponent } from 'src/app/components/calendario/calendario.co
     ListadoComponent,
     SolicitudComponent,
     CalendarioComponent,
+    AdminSolicitudComponent,
   ],
   imports: [
     FormsModule,

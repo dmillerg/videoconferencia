@@ -21,7 +21,7 @@ export class SolicitudComponent implements OnInit {
     minuto_inicio: 0,
     hora_fin: 8,
     minuto_fin: 0,
-    estado: 'en espera',
+    estado: 0,
     not_allowed: 0,
     cant_personas: '',
   };
