@@ -4,8 +4,14 @@
   font-size: 80%;
 }
 .input-content{
-  width: 49%;
+  margin: 5px;
 }
+
+.in:disabled{
+  color: #6b6b6b;
+  cursor: not-allowed;
+}
+
 
 .in{
   border: none;
@@ -13,8 +19,22 @@
   padding: 10px;
 }
 
-option{
-  background: red;
+select.inselect{
+  background-color: transparent;
+  width: 20px;
+  border: 0;
+  outline: 0;
+  color: white;
+  padding: 0;
+}
+
+select.inselect::-ms-expand {
+  display: none;
+}
+
+select.inselect {
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .in::placeholder{

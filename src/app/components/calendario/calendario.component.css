@@ -11,12 +11,16 @@ ol {
   display: flex;
   background-color: transparent;
   border: none;
-  color: #909091;
+  color: white;
   outline: none;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: all .3s ease-in-out;
+}
+
+.dia.past{
+  color: #909091;
 }
 
 .dia:hover {
@@ -25,7 +29,6 @@ ol {
   text-shadow: 3px 0px 17px rgba(0, 0, 0, 0.88);
   background-color: rgba(0, 0, 0, 0.2);
   transition: all .3s ease-in-out;
-
 }
 
 .dia.selected {
