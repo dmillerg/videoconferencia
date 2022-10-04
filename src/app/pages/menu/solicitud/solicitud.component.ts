@@ -71,6 +71,8 @@ export class SolicitudComponent implements OnInit {
     formData.append('estado', this.solicitud.estado);
     formData.append('not_allowed', this.solicitud.not_allowed);
     formData.append('cant_personas', this.solicitud.cant_personas);
+    formData.append('encargado', '1');
+    formData.append('tecnico_encargado', '1');
     
     this.api.addVideoConferencia(formData).subscribe(result => {
       this.router.navigate(['menu/listado']);
@@ -98,42 +100,43 @@ export class SolicitudComponent implements OnInit {
       this.solicitud.tarde = 0
       this.horario = this.solicitud.mannana && this.solicitud.tarde ? 2 : this.solicitud.tarde ? 1 : 0
       this.disable = false
-      this.rellenarHorasMin()
     }
-    
+    this.rellenarHorasMin()
   }
 
   rellenarHorasMin() {
-    this.minutos_fin = Array(7).fill(0).map((x, i) => i * 10);
+    this.solicitud.hora_fin = -1
+    this.solicitud.hora_inicio = -1
+    this.solicitud.minuto_fin = -1
+    this.solicitud.minuto_inicio = -1
+    this.minutos_fin = Array(6).fill(0).map((x, i) => i * 10);
 
     if (this.horario == 0) {
       this.horas_inicio = Array(5).fill(8).map((x, i) => x + i);
-      this.minutos_inicio = Array(7).fill(0).map((x, i) => i * 10);
-      this.horas_fin = Array(13 - Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
-      // this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
-      // this.solicitud.hora_inicio = 8
-      // this.solicitud.hora_fin = 12
-      // this.solicitud.minuto_inicio = 0
-      // this.solicitud.minuto_fin = 0
+      this.minutos_inicio = Array(6).fill(0).map((x, i) => i * 10);
+      this.horas_fin = Array(5).fill(8).map((x, i) => x + i);
     }
     else if (this.horario == 1) {
       this.horas_inicio = Array(5).fill(1).map((x, i) => x + i);
-      this.minutos_inicio = Array(7).fill(0).map((x, i) => i * 10);
-      this.horas_fin = Array(6 - Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
-      // this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
-      // this.solicitud.hora_inicio = 1
-      // this.solicitud.hora_fin = 5
-      // this.solicitud.minuto_inicio = 0
-      // this.solicitud.minuto_fin = 0
+      this.minutos_inicio = Array(6).fill(0).map((x, i) => i * 10);
+      this.horas_fin = Array(5).fill(1).map((x, i) => x + i);
     } else {
       this.horas_inicio = Array(10).fill(8).map((x, i) => x + i);
-      this.minutos_inicio = Array(7).fill(0).map((x, i) => i * 10);
-      this.horas_fin = Array(18 - Number(this.solicitud.hora_inicio)).fill(Number(this.solicitud.hora_inicio)).map((x, i) => x + i);
-      // this.minutos_fin = Array(7-(Number(this.solicitud.minuto_inicio)/10)).fill(Number(this.solicitud.minuto_inicio)).map((x, i) => (x/10+i)*10);
-      // this.solicitud.hora_inicio = 8
-      // this.solicitud.hora_fin = 5
-      // this.solicitud.minuto_inicio = 0
-      // this.solicitud.minuto_fin = 0
+      this.minutos_inicio = Array(6).fill(0).map((x, i) => i * 10);
+      this.horas_fin = Array(10).fill(8).map((x, i) => x + i);
     }
+    this.error();
+  }
+
+  error(){
+    console.log('hora fin',Number(this.solicitud.hora_fin), ' hora inicio ', Number(this.solicitud.hora_inicio));
+    console.log('minuto fin',Number(this.solicitud.minuto_fin), ' minuto_inicio ', Number(this.solicitud.minuto_inicio));
+    
+    console.log('condicion',(Number(this.solicitud.hora_fin)*60+Number(this.solicitud.minuto_fin))-(Number(this.solicitud.hora_inicio)*60+Number(this.solicitud.minuto_inicio)));
+    console.log('inicio',Number(this.solicitud.hora_inicio*60+this.solicitud.minuto_inicio));
+    console.log('fin',Number(this.solicitud.hora_fin*60+Number(this.solicitud.minuto_fin)));
+    console.log('====================================');
+    
+    return (Number(this.solicitud.hora_fin)*60+Number(this.solicitud.minuto_fin))-(Number(this.solicitud.hora_inicio)*60+Number(this.solicitud.minuto_inicio))<60;
   }
 }

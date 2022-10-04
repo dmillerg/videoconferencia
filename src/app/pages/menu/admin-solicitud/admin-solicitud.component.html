@@ -4,7 +4,7 @@
             <button class="btn text-white d-flex flex-row justify-content-center align-item-center position-absolute" style="top: 0px;
             left: -40px;"
                 routerLink="../listado"><i
-                    class="bi bi-chevron-left h5"></i></button>
+                    class="bi bi-chevron-left h5 "></i></button>
         </div>
         <div class="col-sm-12 my-2">
             <div class="header d-flex">
@@ -15,8 +15,8 @@
                 <div class="head text-white font-weight-bold small" style="width: 10%;"><strong>hora inicio</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 10%;"><strong>hora fin</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 8%;"><strong>estado</strong></div>
-                <div class="head text-white font-weight-bold small" style="width: 8%;"><strong>encargado</strong></div>
-                <div class="head text-white font-weight-bold small" style="width: 8%;"><strong>tecnico de respaldo</strong>
+                <div class="head text-white font-weight-bold small" style="width: 15%;"><strong>encargado</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 15%;"><strong>tecnico de respaldo</strong>
                 </div>
                 <div class="head text-white font-weight-bold" style="width: 8%;"><strong>salon</strong></div>
             </div>
@@ -53,13 +53,13 @@
                         <option value="2">Denegado</option>
                     </select>
                 </div>
-                <div class="cont" style="width: 8%;">
+                <div class="cont" style="width: 15%;">
                     <select name="encargado" id="encargado" [(ngModel)]="item.encargado.id" (ngModelChange)="addRow(item)"
                         class="in small">
                         <option [value]="item2.id" *ngFor="let item2 of tecnicos">{{item2.usuario}}</option>
                     </select>
                 </div>
-                <div class="cont " style="width: 8%;">
+                <div class="cont " style="width: 15%;">
                     <select name="respaldo" id="respaldo" class="in small" [(ngModel)]="item.tecnico_respaldo.id" (ngModelChange)="addRow(item)">
                         <option [value]="item2.id" *ngFor="let item2 of tecnicos">{{item2.usuario}}</option>
                     </select>

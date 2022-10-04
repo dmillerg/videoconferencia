@@ -5,6 +5,8 @@
 }
 .input-content{
   margin: 5px;
+  color: white;
+  border: 1px solid #6c757d;
 }
 
 .in:disabled{
@@ -48,3 +50,11 @@ select.inselect {
   /* white-space: nowrap; */
 }
 
+.input-content.error{
+  color: #7e2c34;
+  border: 1px solid #7e2c34;
+}
+
+.btn:disabled{
+  cursor: not-allowed;
+}

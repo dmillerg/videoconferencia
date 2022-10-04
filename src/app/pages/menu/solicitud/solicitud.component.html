@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-sm-8">
             <div class="d-flex justify-content-start align-item-center position-relative">
-                <button class="btn position-absolute" style="margin-top: -5px;left: -40px;"><i class="bi bi-chevron-left text-white h5"
-                        routerLink="../listado"></i></button>
+                <button class="btn position-absolute" style="margin-top: -5px;left: -40px;"><i
+                        class="bi bi-chevron-left text-white h5" routerLink="../listado"></i></button>
                 <h4 class="h4 text-white">Solicitud de videoconferencia</h4>
             </div>
             <form action=""
@@ -40,18 +40,18 @@
                     </select>
                 </div>
 
-                <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2"
-                    style="width: fit-content;">
-                    <label for="hora_ini" class="in-text text-white position-absolute small">Hora inicio:</label>
+                <div class="input-content mt-4 rounded position-relative d-flex justify-content-center align-item-center px-2"
+                    style="width: fit-content;" [ngClass]="{'error': error()}">
+                    <label for="hora_ini" class="in-text position-absolute small">Hora inicio:</label>
                     <select name="hora_inicio" id="hora_inicio" class="inselect small"
-                        [(ngModel)]="solicitud.hora_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
+                        [(ngModel)]="solicitud.hora_inicio" style="width: 30px;" >
                         <option class="bg-dark text-muted" *ngFor="let item of horas_inicio" [value]="item">{{item
                             <10?'0'+item:item>12?'0'+(item-12):item}}
                         </option>
                     </select>
                     <label for="" class="text-white mt-2">:</label>
-                    <select name="minutos_inicio" id="minutos_inicio" class="inselect small"
-                        [(ngModel)]="solicitud.minuto_inicio" style="width: 30px;" (ngModelChange)="rellenarHorasMin()">
+                    <select name="minuto_inicio" id="minuto_inicio" class="inselect small"
+                        [(ngModel)]="solicitud.minuto_inicio" style="width: 30px;">
                         <option class="bg-dark text-muted" *ngFor="let item of minutos_inicio" [value]="item">{{item
                             <10?'0'+item:item}} </option>
                     </select>
@@ -61,17 +61,17 @@
                         <option class="bg-dark text-muted" value="1">PM</option>
                     </select>
                 </div>
-                <div class="input-content mt-4 rounded border border-secondary position-relative d-flex justify-content-center align-item-center px-2"
-                    style="width: fit-content;">
-                    <label for="hora_fin" class="in-text text-white position-absolute small">Hora final:</label>
+                <div class="input-content mt-4 rounded position-relative d-flex justify-content-center align-item-center px-2"
+                    style="width: fit-content;" [ngClass]="{'error': error()}">
+                    <label for="hora_fin" class="in-text position-absolute small">Hora final:</label>
                     <select name="hora_fin" id="hora_fin" class="inselect small" style="width: 30px;"
-                        [(ngModel)]="solicitud.hora_fin" (ngModelChange)="rellenarHorasMin()">
-                        <option class="bg-dark text-muted" *ngFor="let item of horas_fin">{{item<10?'0'+item:item>
-                                12?'0'+(item-12):item}}</option>
+                        [(ngModel)]="solicitud.hora_fin" >
+                        <option class="bg-dark text-muted" *ngFor="let item of horas_fin">{{item
+                            <10?'0'+item:item>12?'0'+(item-12):item}}</option>
                     </select>
                     <label for="" class="text-white mt-2">:</label>
                     <select name="minuto_fin" id="minuto_fin" class="inselect small" style="width: 30px;"
-                        [(ngModel)]="solicitud.minuto_fin" (ngModelChange)="rellenarHorasMin()">
+                        [(ngModel)]="solicitud.minuto_fin" >
                         <option class="bg-dark text-muted" *ngFor="let item of minutos_fin">{{item<10?'0'+item:item}}
                                 </option>
                     </select>
@@ -94,7 +94,7 @@
                         placeholder="Descripción sobre que trata la videoconferencia, asi como sindicatos asociados.."
                         name="descripcion" [(ngModel)]="solicitud.descripcion"></textarea>
                 </div>
-                <button class="btn btn-dark mt-4" (click)="addVideoConferencia()">Aceptar</button>
+                <button class="btn btn-dark mt-4" (click)="addVideoConferencia()" [disabled]="error() || solicitud.nombre.length==0 || solicitud.citado_por.length==0 || solicitud.descripcion.length==0">Aceptar</button>
                 <!-- <div class="input-content">
                     <label for="nombre" class="in-text">nombre</label>
                     <input type="text" id="nombre" class="in">
