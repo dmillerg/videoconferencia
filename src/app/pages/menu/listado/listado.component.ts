@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListadoComponent implements OnInit {
   menu: any[] = [
     {
+      icono: 'bi-clipboard-check',
       imagen: '',
       titulo: 'Consultar',
       subtitulo: 'Consultar el estado de mis peticiones',
@@ -15,11 +16,28 @@ export class ListadoComponent implements OnInit {
       accion: 'menu/consultar',
     },
     {
+      icono: 'bi-journal-text',
       imagen: '',
-      titulo: 'Pedir',
-      subtitulo: 'Citar una videoconferencia',
+      titulo: 'Solicitud',
+      subtitulo: 'Solicitar una videoconferencia',
       descripcion: 'Las videoconferencias pueden ser reservadas desde aqui siempre y cuando el dia este disponible en el calendario.',
       accion: 'menu/solicitud',
+    },
+    {
+      icono: 'bi-kanban-fill',
+      imagen: '',
+      titulo: 'Solicitudes',
+      subtitulo: 'Administrar las solicitudes',
+      descripcion: 'Administra las solicitudes cambiando el estado, tecnico, tecnico de respaldo y salon de se realizará la videoconferencia, a esta sección solo tendrá acceso el administrador del sitio.',
+      accion: 'menu/admin-solicitud',
+    },
+    {
+      icono: 'bi-person-fill',
+      imagen: '',
+      titulo: 'Usuarios',
+      subtitulo: 'Administrar los usuarios',
+      descripcion: 'Administra todos los usuarios del sistema pudiendo editar cada aspectos de estos.',
+      accion: 'menu/admin-solicitud',
     }
   ]
   constructor() { }

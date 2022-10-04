@@ -30,6 +30,7 @@
 
 .menu {
     position: relative;
+    z-index: 999;
 }
 
 .menu-list {
@@ -40,7 +41,7 @@
     max-height: 200px;
     max-width: 200px;
     background-color: white;
-    z-index: 99;
+    z-index: 999;
     transition: all .3s ease-in-out;
 }
 
@@ -48,6 +49,7 @@
     width: 100%;
     padding: 10px;
     font-size: 75%;
+    z-index: 999;
 }
 
 .menu:hover .menu-list {
