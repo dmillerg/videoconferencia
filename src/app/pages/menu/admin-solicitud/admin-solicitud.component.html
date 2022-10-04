@@ -81,6 +81,6 @@
         </div>
     </div>
     <div class="row d-flex flex-row-reverse"><button class="btn btn-dark text-white small w-25 shadow-lg"
-            (click)="aplicar()">Aplicar
+            (click)="aplicar()" [disabled]="cambios.length==0">Aplicar
             cambios</button></div>
 </div>
