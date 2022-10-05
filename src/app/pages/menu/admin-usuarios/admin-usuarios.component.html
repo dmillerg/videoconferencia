@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 position-relative">
+            <button class="btn text-white d-flex flex-row justify-content-center align-item-center position-absolute"
+                style="top: 0px;
+            left: -40px;" routerLink="../listado"><i class="bi bi-chevron-left h5 "></i></button>
+        </div>
+        <div class="col-sm-12 my-2">
+            <div class="header d-flex">
+                <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>usuario</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>nombre</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>correo</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>fecha
+                        registro</strong>
+                </div>
+                <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>ultima sesion</strong>
+                </div>
+                <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>rol</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>piso</strong></div>
+            </div>
+            <hr class="text-white">
+
+        </div>
+        <div class="col-sm-12 position-relative" style="max-height: 300px;overflow-y: auto;">
+
+            <div class="content p-1 rounded d-flex flex-row  justify-content-center align-item-center"
+                *ngFor="let item of usuarios">
+                <div class="cont" style="width: 14.2%;">
+                    <p class="small mt-2">{{item.usuario}}</p>
+                </div>
+                <div class="cont" style="width: 14.2%;">
+                    <p class="small mt-2">{{item.nombre}}</p>
+                </div>
+                <div class="cont" style="width: 14.2%;">
+                    <p class="small mt-2">{{item.correo}}</p>
+                </div>
+                <div class="cont" style="width: 14.2%;">
+                    <p class="small mt-2">{{item.fecha_registro| date: 'dd/MM/yyyy'}}</p>
+                </div>
+                <div class="cont" style="width: 14.2%;">
+                    <p class="small mt-2">{{item.ultima_sesion| date: 'dd/MM/yyyy'}}</p>
+                </div>
+                <div class="cont" style="width: 14.2%;">
+                    <select name="rol" id="rol" class="in small" [(ngModel)]="item.rol" >
+                        <option value="usuario">usuario</option>
+                        <option value="admin">admin</option>
+                        <option value="técnico">técnico</option>
+                    </select>
+                </div>
+                <div class="cont" style="width: 14.2%;">
+                    <select name="piso" id="piso" class="in small" [(ngModel)]="item.piso" >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </div>
+            <div class="position-absolute d-flex flex-row justify-content-center align-item-center"
+                style="top: 0;left: 0;right: 0;bottom: 0;" *ngIf="loading">
+                <div class="spinner-grow mt-4 text-center" role="status">
+                    <!-- <span class="sr-only text-white text-shadow">Cargando...</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex flex-row-reverse"><button class="btn btn-dark text-white small w-25 shadow-lg">Aplicar
+            cambios</button></div>
+</div>

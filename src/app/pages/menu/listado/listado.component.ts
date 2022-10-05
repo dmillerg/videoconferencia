@@ -37,7 +37,7 @@ export class ListadoComponent implements OnInit {
       titulo: 'Usuarios',
       subtitulo: 'Administrar los usuarios',
       descripcion: 'Administra todos los usuarios del sistema pudiendo editar cada aspectos de estos.',
-      accion: 'menu/admin-solicitud',
+      accion: 'menu/admin-usuarios',
     }
   ]
   constructor() { }

@@ -44,6 +44,7 @@ export class SolicitudComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDates()
+    
     this.rellenarHorasMin();
   }
 
@@ -73,6 +74,8 @@ export class SolicitudComponent implements OnInit {
     formData.append('cant_personas', this.solicitud.cant_personas);
     formData.append('encargado', '1');
     formData.append('tecnico_encargado', '1');
+    formData.append('salon', '-1');
+    formData.append('sindicato', this.solicitud.sindicato);
     
     this.api.addVideoConferencia(formData).subscribe(result => {
       this.router.navigate(['menu/listado']);

@@ -18,7 +18,7 @@
                 <div class="head text-white font-weight-bold small" style="width: 15%;"><strong>encargado</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 15%;"><strong>tecnico de respaldo</strong>
                 </div>
-                <div class="head text-white font-weight-bold" style="width: 8%;"><strong>salon</strong></div>
+                <div class="head text-white font-weight-bold" style="width: 15%;"><strong>salon</strong></div>
             </div>
             <hr class="text-white">
         </div>
@@ -64,8 +64,9 @@
                         <option [value]="item2.id" *ngFor="let item2 of tecnicos">{{item2.usuario}}</option>
                     </select>
                 </div>
-                <div class="cont " style="width: 8%;">
+                <div class="cont " style="width: 15%;">
                     <select name="salon" id="salon" [(ngModel)]="item.salon" class="in small" (ngModelChange)="addRow(item)">
+                        <option value="-1" >(no asignado)</option>
                         <option [value]="'TELMAN'">TELMAN</option>
                         <option [value]="'CELIA'">CELIA</option>
                         <option [value]="'JUAN MARINELLO'">JUAN MARINELLO</option>
