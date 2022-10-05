@@ -17,6 +17,7 @@
                 </div>
                 <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>rol</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>piso</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 5%;"><button class="btn btn-success text-white"><i class="bi bi-plus"></i></button></div>
             </div>
             <hr class="text-white">
 
@@ -24,6 +25,7 @@
         <div class="col-sm-12 position-relative" style="max-height: 300px;overflow-y: auto;">
 
             <div class="content p-1 rounded d-flex flex-row  justify-content-center align-item-center"
+            [ngClass]="{'modificada': comprobar(item.id)}"
                 *ngFor="let item of usuarios">
                 <div class="cont" style="width: 14.2%;">
                     <p class="small mt-2">{{item.usuario}}</p>
@@ -41,21 +43,19 @@
                     <p class="small mt-2">{{item.ultima_sesion| date: 'dd/MM/yyyy'}}</p>
                 </div>
                 <div class="cont" style="width: 14.2%;">
-                    <select name="rol" id="rol" class="in small" [(ngModel)]="item.rol" >
+                    <select name="rol" id="rol" class="in small" [(ngModel)]="item.rol" (ngModelChange)="addRow(item)" >
                         <option value="usuario">usuario</option>
                         <option value="admin">admin</option>
                         <option value="técnico">técnico</option>
                     </select>
                 </div>
                 <div class="cont" style="width: 14.2%;">
-                    <select name="piso" id="piso" class="in small" [(ngModel)]="item.piso" >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                    <select name="piso" id="piso" class="in small"  [(ngModel)]="item.piso.id" (ngModelChange)="addRow(item)" >
+                        <option *ngFor="let item2 of pisos" [value]="item2.id">{{item2.numero}}</option>
                     </select>
+                </div>
+                <div class="cont text-center" style="width: 5%;">
+                    <button class="btn text-white"><i class="bi bi-trash"></i></button>
                 </div>
             </div>
             <div class="position-absolute d-flex flex-row justify-content-center align-item-center"
@@ -64,8 +64,9 @@
                     <!-- <span class="sr-only text-white text-shadow">Cargando...</span> -->
                 </div>
             </div>
+            
         </div>
     </div>
-    <div class="row d-flex flex-row-reverse"><button class="btn btn-dark text-white small w-25 shadow-lg">Aplicar
+    <div class="row d-flex flex-row-reverse"><button class="btn btn-dark text-white small w-25 shadow-lg" [disabled]="cambios.length==0" (click)="aplicar();">Aplicar
             cambios</button></div>
 </div>

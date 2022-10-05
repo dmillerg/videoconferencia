@@ -1,3 +1,6 @@
+.selected{
+    color: #2458a6;
+}
 .in{
     border: none;
     margin: 0;
@@ -13,7 +16,7 @@
     text-overflow: ellipsis;
 }
 
-.btn-dark{
+.btn-darki{
     position: absolute;
     bottom: -20px;
     right: 50px;

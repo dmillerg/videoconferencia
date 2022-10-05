@@ -38,7 +38,15 @@ export class ListadoComponent implements OnInit {
       subtitulo: 'Administrar los usuarios',
       descripcion: 'Administra todos los usuarios del sistema pudiendo editar cada aspectos de estos.',
       accion: 'menu/admin-usuarios',
-    }
+    },
+    {
+      icono: 'bi-building',
+      imagen: '',
+      titulo: 'Pisos y Sindicatos',
+      subtitulo: 'Administrar los pisos y sindicatos de la ctc',
+      descripcion: 'Permite gestionar los pisos y sindicatos correspondientes a esos pisos.',
+      accion: 'menu/admin-sindicato-piso',
+    },
   ]
   constructor() { }
 

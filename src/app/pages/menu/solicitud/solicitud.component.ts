@@ -24,6 +24,7 @@ export class SolicitudComponent implements OnInit {
     estado: 0,
     not_allowed: 0,
     cant_personas: '',
+    sindicato: -1,
   };
   horario: number = 0;
   now = moment();
@@ -32,7 +33,7 @@ export class SolicitudComponent implements OnInit {
   disable: boolean = false;
 
   not_allowed: any[] = [moment('2022-10-23')];
-  selected: any = this.now.add(4,'days');
+  selected: any = this.now.add(4, 'days');
   dates: any[] = [];
 
   horas_inicio: number[] = []
@@ -40,11 +41,13 @@ export class SolicitudComponent implements OnInit {
   horas_fin: number[] = []
   minutos_fin: number[] = [];
 
+  sindicatos: any[] = [];
+
   constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {
     this.getDates()
-    
+
     this.rellenarHorasMin();
   }
 
@@ -54,20 +57,26 @@ export class SolicitudComponent implements OnInit {
     })
   }
 
+  getSindicatos() {
+    this.api.getSindicato().subscribe(result => {
+      this.sindicatos = result;
+    })
+  }
+
   addVideoConferencia() {
     // console.log(this.solicitud);
     // console.log(moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_inicio+':'+this.solicitud.minuto_inicio));
     // console.log(moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_fin+':'+this.solicitud.minuto_fin));
-    const hi = moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_inicio+':'+this.solicitud.minuto_inicio)
-    const hf = moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_fin+':'+this.solicitud.minuto_fin)
+    const hi = moment(this.selected.year() + '-' + this.selected.month() + '-' + this.selected.date() + ' ' + this.solicitud.hora_inicio + ':' + this.solicitud.minuto_inicio)
+    const hf = moment(this.selected.year() + '-' + this.selected.month() + '-' + this.selected.date() + ' ' + this.solicitud.hora_fin + ':' + this.solicitud.minuto_fin)
     const formData = new FormData();
     formData.append('nombre', this.solicitud.nombre);
     formData.append('descripcion', this.solicitud.descripcion);
     formData.append('citado_por', this.solicitud.citado_por);
-    formData.append('mannana', this.horario==0?'1':'0');
-    formData.append('tarde',  this.horario==0?'0':'1');
-    formData.append('fecha',  this.selected.toString());
-    formData.append('hora_inicio',hi.toString());
+    formData.append('mannana', this.horario == 0 ? '1' : '0');
+    formData.append('tarde', this.horario == 0 ? '0' : '1');
+    formData.append('fecha', this.selected.toString());
+    formData.append('hora_inicio', hi.toString());
     formData.append('hora_fin', hf.toString());
     formData.append('estado', this.solicitud.estado);
     formData.append('not_allowed', this.solicitud.not_allowed);
@@ -76,7 +85,7 @@ export class SolicitudComponent implements OnInit {
     formData.append('tecnico_encargado', '1');
     formData.append('salon', '-1');
     formData.append('sindicato', this.solicitud.sindicato);
-    
+
     this.api.addVideoConferencia(formData).subscribe(result => {
       this.router.navigate(['menu/listado']);
 
@@ -131,15 +140,15 @@ export class SolicitudComponent implements OnInit {
     this.error();
   }
 
-  error(){
-    console.log('hora fin',Number(this.solicitud.hora_fin), ' hora inicio ', Number(this.solicitud.hora_inicio));
-    console.log('minuto fin',Number(this.solicitud.minuto_fin), ' minuto_inicio ', Number(this.solicitud.minuto_inicio));
-    
-    console.log('condicion',(Number(this.solicitud.hora_fin)*60+Number(this.solicitud.minuto_fin))-(Number(this.solicitud.hora_inicio)*60+Number(this.solicitud.minuto_inicio)));
-    console.log('inicio',Number(this.solicitud.hora_inicio*60+this.solicitud.minuto_inicio));
-    console.log('fin',Number(this.solicitud.hora_fin*60+Number(this.solicitud.minuto_fin)));
+  error() {
+    console.log('hora fin', Number(this.solicitud.hora_fin), ' hora inicio ', Number(this.solicitud.hora_inicio));
+    console.log('minuto fin', Number(this.solicitud.minuto_fin), ' minuto_inicio ', Number(this.solicitud.minuto_inicio));
+
+    console.log('condicion', (Number(this.solicitud.hora_fin) * 60 + Number(this.solicitud.minuto_fin)) - (Number(this.solicitud.hora_inicio) * 60 + Number(this.solicitud.minuto_inicio)));
+    console.log('inicio', Number(this.solicitud.hora_inicio * 60 + this.solicitud.minuto_inicio));
+    console.log('fin', Number(this.solicitud.hora_fin * 60 + Number(this.solicitud.minuto_fin)));
     console.log('====================================');
-    
-    return (Number(this.solicitud.hora_fin)*60+Number(this.solicitud.minuto_fin))-(Number(this.solicitud.hora_inicio)*60+Number(this.solicitud.minuto_inicio))<60;
+
+    return (Number(this.solicitud.hora_fin) * 60 + Number(this.solicitud.minuto_fin)) - (Number(this.solicitud.hora_inicio) * 60 + Number(this.solicitud.minuto_inicio)) < 60;
   }
 }

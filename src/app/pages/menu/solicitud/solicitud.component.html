@@ -44,7 +44,7 @@
                     style="width: fit-content;" [ngClass]="{'error': error()}">
                     <label for="hora_ini" class="in-text position-absolute small">Hora inicio:</label>
                     <select name="hora_inicio" id="hora_inicio" class="inselect small"
-                        [(ngModel)]="solicitud.hora_inicio" style="width: 30px;" >
+                        [(ngModel)]="solicitud.hora_inicio" style="width: 30px;">
                         <option class="bg-dark text-muted" *ngFor="let item of horas_inicio" [value]="item">{{item
                             <10?'0'+item:item>12?'0'+(item-12):item}}
                         </option>
@@ -65,13 +65,14 @@
                     style="width: fit-content;" [ngClass]="{'error': error()}">
                     <label for="hora_fin" class="in-text position-absolute small">Hora final:</label>
                     <select name="hora_fin" id="hora_fin" class="inselect small" style="width: 30px;"
-                        [(ngModel)]="solicitud.hora_fin" >
+                        [(ngModel)]="solicitud.hora_fin">
                         <option class="bg-dark text-muted" *ngFor="let item of horas_fin">{{item
-                            <10?'0'+item:item>12?'0'+(item-12):item}}</option>
+                            <10?'0'+item:item>12?'0'+(item-12):item}}
+                        </option>
                     </select>
                     <label for="" class="text-white mt-2">:</label>
                     <select name="minuto_fin" id="minuto_fin" class="inselect small" style="width: 30px;"
-                        [(ngModel)]="solicitud.minuto_fin" >
+                        [(ngModel)]="solicitud.minuto_fin">
                         <option class="bg-dark text-muted" *ngFor="let item of minutos_fin">{{item<10?'0'+item:item}}
                                 </option>
                     </select>
@@ -79,6 +80,17 @@
                         [(ngModel)]="horario">
                         <option class="bg-dark text-muted" value="0">AM</option>
                         <option class="bg-dark text-muted" value="1">PM</option>
+                    </select>
+                </div>
+                <div
+                    class="input-content mt-4 rounded position-relative d-flex justify-content-center align-item-center px-2 w-25">
+                    <label for="sindicato" class="in-text position-absolute small">Sindicato:</label>
+
+                    <select name="sindicato" id="sindicato" class="inselect small w-100"
+                        [(ngModel)]="solicitud.sindicato">
+                        <option value="-1" selected>Seleccione un sindicato</option>
+                        <option [value]="item.sindicato.id" *ngFor="let item of sindicatos" class="bg-dark text-muted">
+                            {{item.sindicato.nombre}}</option>
                     </select>
                 </div>
                 <!-- <div class="input-content mt-4 rounded border border-secondary position-relative w-25">
@@ -94,7 +106,8 @@
                         placeholder="Descripción sobre que trata la videoconferencia, asi como sindicatos asociados.."
                         name="descripcion" [(ngModel)]="solicitud.descripcion"></textarea>
                 </div>
-                <button class="btn btn-dark mt-4" (click)="addVideoConferencia()" [disabled]="error() || solicitud.nombre.length==0 || solicitud.citado_por.length==0 || solicitud.descripcion.length==0">Aceptar</button>
+                <button class="btn btn-dark mt-4" (click)="addVideoConferencia()"
+                    [disabled]="error() || solicitud.nombre.length==0 || solicitud.citado_por.length==0 || solicitud.descripcion.length==0">Aceptar</button>
                 <!-- <div class="input-content">
                     <label for="nombre" class="in-text">nombre</label>
                     <input type="text" id="nombre" class="in">

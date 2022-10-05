@@ -9,6 +9,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { CalendarioComponent } from 'src/app/components/calendario/calendario.component';
 import { AdminSolicitudComponent } from './admin-solicitud/admin-solicitud.component';
 import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.component';
+import { AdminSindicatoPisoComponent } from './admin-sindicato-piso/admin-sindicato-piso.component';
 
 
 
@@ -22,6 +23,7 @@ import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.componen
     CalendarioComponent,
     AdminSolicitudComponent,
     AdminUsuariosComponent,
+    AdminSindicatoPisoComponent,
   ],
   imports: [
     FormsModule,
