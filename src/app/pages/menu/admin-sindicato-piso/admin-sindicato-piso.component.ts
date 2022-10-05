@@ -53,6 +53,7 @@ export class AdminSindicatoPisoComponent implements OnInit {
     this.cambios.forEach((e, i) => {
       const formData = new FormData();
       formData.append('nombre', e.nombre);
+      formData.append('siglas', e.siglas);
       formData.append('descripcion', e.descripcion);
       formData.append('piso', e.piso.id);
       this.api.updateSindicato(e.id, formData).subscribe(result => {
