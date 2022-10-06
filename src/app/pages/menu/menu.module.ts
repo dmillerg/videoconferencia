@@ -10,6 +10,7 @@ import { CalendarioComponent } from 'src/app/components/calendario/calendario.co
 import { AdminSolicitudComponent } from './admin-solicitud/admin-solicitud.component';
 import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.component';
 import { AdminSindicatoPisoComponent } from './admin-sindicato-piso/admin-sindicato-piso.component';
+import { FormSindicatoComponent } from './form-sindicato/form-sindicato.component';
 
 
 
@@ -24,6 +25,7 @@ import { AdminSindicatoPisoComponent } from './admin-sindicato-piso/admin-sindic
     AdminSolicitudComponent,
     AdminUsuariosComponent,
     AdminSindicatoPisoComponent,
+    FormSindicatoComponent,
   ],
   imports: [
     FormsModule,

@@ -15,12 +15,15 @@ export class AdminSindicatoPisoComponent implements OnInit {
   tecnicos: any[]=[];
 
   cambios: any[]=[];
+  form: boolean = false;
+  info:any={};
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     this.getPisos();
     this.getSindicato();
     this.getTecnico();
+    this.informacion();
   }
 
   getPisos() {
@@ -44,7 +47,7 @@ export class AdminSindicatoPisoComponent implements OnInit {
   }
 
   getTecnico(){
-    this.api.getUsuarios().subscribe(result => this.tecnicos = result.filter(e=>e.rol=='técnico'))
+    this.api.getUsuarios().subscribe(result => this.tecnicos = result.filter(e=>e.rol=='técnico'&& e.id!=1))
   }
 
   addRow(row: any) {
@@ -78,5 +81,10 @@ export class AdminSindicatoPisoComponent implements OnInit {
         }
       });
     });
+  }
+
+  informacion(){
+    this.info.cant_usuarios = this.tecnicos.filter(e=>e.piso.id==this.piso_selected.id).length;
+    this.info.cant_sindicatos = this.sindicatos.filter(e=>e.piso.id==this.piso_selected.id).length;
   }
 }
