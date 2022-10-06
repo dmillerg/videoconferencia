@@ -34,8 +34,10 @@ export class AdminSolicitudComponent implements OnInit {
     });
   }
 
-  addRow(row: any) {
+  addRow(row: any, check: any={}) {
+    if (this.cambios.filter(e=>e.id==row.id).length==0)
     this.cambios.push(row);
+    else if(!check.target.checked) this.cambios = this.cambios.filter(e=>e.id!=row.id);
   }
 
   comprobar(id: any) {
@@ -73,5 +75,15 @@ export class AdminSolicitudComponent implements OnInit {
         }
       });
     });
+  }
+
+  eliminar(){
+    this.cambios.forEach((e,i)=>{
+      this.api.deleteVideoConferencia(e.id).subscribe(result=>{
+        if (i == this.cambios.length - 1) {
+          this.getVideoConferencias();
+        }
+      });
+    })
   }
 }

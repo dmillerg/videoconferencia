@@ -47,7 +47,7 @@ export class SolicitudComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDates()
-
+    this.getSindicatos();
     this.rellenarHorasMin();
   }
 
@@ -82,7 +82,7 @@ export class SolicitudComponent implements OnInit {
     formData.append('not_allowed', this.solicitud.not_allowed);
     formData.append('cant_personas', this.solicitud.cant_personas);
     formData.append('encargado', '1');
-    formData.append('tecnico_encargado', '1');
+    formData.append('tecnico_respaldo', '1');
     formData.append('salon', '-1');
     formData.append('sindicato', this.solicitud.sindicato);
 
