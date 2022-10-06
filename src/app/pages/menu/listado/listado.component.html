@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div *ngFor="let item of menu" class="col-sm-3">
-            <app-menu-item [imagen]="item.imagen" [titulo]="item.titulo" [subtitulo]="item.subtitulo" [icono]="item.icono"
+            <app-menu-item [imagen]="item.imagen" [imagen_hover]="item.imagen_hover" [titulo]="item.titulo" [subtitulo]="item.subtitulo" [icono]="item.icono"
                 [descripcion]="item.descripcion" [accion]="item.accion"></app-menu-item>
         </div>
     </div>

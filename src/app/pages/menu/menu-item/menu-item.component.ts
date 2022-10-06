@@ -10,6 +10,7 @@ export class MenuItemComponent implements OnInit {
 
   @Input() icono: string = '';
   @Input() imagen: string = ''
+  @Input() imagen_hover: string = ''
   @Input() titulo: string = ''
   @Input() subtitulo: string = ''
   @Input() descripcion: string = ''

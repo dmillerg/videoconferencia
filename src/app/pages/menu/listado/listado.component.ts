@@ -9,7 +9,8 @@ export class ListadoComponent implements OnInit {
   menu: any[] = [
     {
       icono: 'bi-clipboard-check',
-      imagen: '',
+      imagen: 'assets/icons/consulta.png',
+      imagen_hover: 'assets/icons/consultahover.apng',
       titulo: 'Consultar',
       subtitulo: 'Consultar el estado de mis peticiones',
       descripcion: 'Las peticiones de las videoconferencias cuentan con tres estados: en espera, aprobado, rechazado.',
@@ -17,7 +18,8 @@ export class ListadoComponent implements OnInit {
     },
     {
       icono: 'bi-journal-text',
-      imagen: '',
+      imagen: 'assets/icons/solicitar.png',
+      imagen_hover: 'assets/icons/solicitarhover.apng',
       titulo: 'Solicitud',
       subtitulo: 'Solicitar una videoconferencia',
       descripcion: 'Las videoconferencias pueden ser reservadas desde aqui siempre y cuando el dia este disponible en el calendario.',
@@ -25,7 +27,8 @@ export class ListadoComponent implements OnInit {
     },
     {
       icono: 'bi-kanban-fill',
-      imagen: '',
+      imagen: 'assets/icons/solicitar.png',
+      imagen_hover: 'assets/icons/solicitarhover.apng',
       titulo: 'Solicitudes',
       subtitulo: 'Administrar las solicitudes',
       descripcion: 'Administra las solicitudes cambiando el estado, tecnico, tecnico de respaldo y salon de se realizará la videoconferencia, a esta sección solo tendrá acceso el administrador del sitio.',
