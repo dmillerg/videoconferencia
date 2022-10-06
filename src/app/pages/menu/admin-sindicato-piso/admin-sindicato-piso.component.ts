@@ -12,6 +12,7 @@ export class AdminSindicatoPisoComponent implements OnInit {
   piso_selected: any = -1;
 
   sindicatos: any[] = [];
+  tecnicos: any[]=[];
 
   cambios: any[]=[];
   constructor(private api: ApiService) { }
@@ -19,6 +20,7 @@ export class AdminSindicatoPisoComponent implements OnInit {
   ngOnInit(): void {
     this.getPisos();
     this.getSindicato();
+    this.getTecnico();
   }
 
   getPisos() {
@@ -41,6 +43,10 @@ export class AdminSindicatoPisoComponent implements OnInit {
     this.api.getSindicato().subscribe(result => this.sindicatos = result)
   }
 
+  getTecnico(){
+    this.api.getUsuarios().subscribe(result => this.tecnicos = result.filter(e=>e.rol=='técnico'))
+  }
+
   addRow(row: any) {
     this.cambios.push(row);
   }
@@ -60,12 +66,14 @@ export class AdminSindicatoPisoComponent implements OnInit {
         if (i == this.cambios.length - 1) {
           this.getSindicato();
           this.getPisos();
+          this.getTecnico();
           this.cambios = [];
         }
       }, error => {
         if (i == this.cambios.length - 1) {
           this.getSindicato();
           this.getPisos();
+          this.getTecnico();
           this.cambios = [];
         }
       });

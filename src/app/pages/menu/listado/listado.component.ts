@@ -18,8 +18,8 @@ export class ListadoComponent implements OnInit {
     },
     {
       icono: 'bi-journal-text',
-      imagen: 'assets/icons/solicitar.png',
-      imagen_hover: 'assets/icons/solicitarhover.apng',
+      imagen: 'assets/icons/video.png',
+      imagen_hover: 'assets/icons/videohover.apng',
       titulo: 'Solicitud',
       subtitulo: 'Solicitar una videoconferencia',
       descripcion: 'Las videoconferencias pueden ser reservadas desde aqui siempre y cuando el dia este disponible en el calendario.',
@@ -27,8 +27,8 @@ export class ListadoComponent implements OnInit {
     },
     {
       icono: 'bi-kanban-fill',
-      imagen: 'assets/icons/solicitar.png',
-      imagen_hover: 'assets/icons/solicitarhover.apng',
+      imagen: 'assets/icons/solicitud.png',
+      imagen_hover: 'assets/icons/solicitudhover.apng',
       titulo: 'Solicitudes',
       subtitulo: 'Administrar las solicitudes',
       descripcion: 'Administra las solicitudes cambiando el estado, tecnico, tecnico de respaldo y salon de se realizará la videoconferencia, a esta sección solo tendrá acceso el administrador del sitio.',
@@ -36,7 +36,8 @@ export class ListadoComponent implements OnInit {
     },
     {
       icono: 'bi-person-fill',
-      imagen: '',
+      imagen: 'assets/icons/usuarios.png',
+      imagen_hover: 'assets/icons/usuarioshover.apng',
       titulo: 'Usuarios',
       subtitulo: 'Administrar los usuarios',
       descripcion: 'Administra todos los usuarios del sistema pudiendo editar cada aspectos de estos.',
@@ -44,7 +45,8 @@ export class ListadoComponent implements OnInit {
     },
     {
       icono: 'bi-building',
-      imagen: '',
+      imagen: 'assets/icons/piso.png',
+      imagen_hover: 'assets/icons/pisohover.apng',
       titulo: 'Pisos y Sindicatos',
       subtitulo: 'Administrar los pisos y sindicatos de la ctc',
       descripcion: 'Permite gestionar los pisos y sindicatos correspondientes a esos pisos.',

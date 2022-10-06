@@ -18,19 +18,21 @@
                             piso</button>
                         <button class="btn btn-dark" (click)="deletePiso()" [disabled]="pisos.length<=0">Eliminar ultimo
                             piso</button>
+                            <p class="small text-muted">Para eliminar un piso primero se debe de haber eliminado o modificado los tecnicos asociados a este asi como los sindicatos que pertenecen a este piso. Tenga en cuenta que si existe al menos uno de estos dos no le sera posible realizar esta operacion.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-1 d-flex flex-column-reverse justify-content-end align-item-end">
+        <div class="col-sm-2 d-flex flex-column-reverse justify-content-end align-item-end">
             <div class="d-flex" *ngFor="let item of pisos"
-                [ngClass]="{'selected':item.numero==piso_selected, 'text-white': item.numero!=piso_selected}"
-                (click)="piso_selected= item.numero">
+                [ngClass]="{'selected':item.numero==piso_selected.numero, 'text-white': item.numero!=piso_selected.numero}"
+                (click)="piso_selected= item">
                 <h1 class="h4 mt-4"><strong>{{item.numero}}</strong></h1>
                 <i class="bi bi-shop display-4"></i>
             </div>
+           
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-6">
             <div class="container">
                 <div class="row">
                     <div class="d-flex text-white col-sm-12">
@@ -38,6 +40,8 @@
                     </div>
                     <div class="col-sm-12 my-2">
                         <div class="header d-flex">
+                            <div class="head text-white font-weight-bold small" style="width: 10%;">
+                                <strong>siglas</strong></div>
                             <div class="head text-white font-weight-bold small" style="width: 30%;">
                                 <strong>nombre</strong></div>
                             <div class="head text-white font-weight-bold small" style="width: 60%;">
@@ -51,6 +55,9 @@
 
                         <div class="content p-1 rounded d-flex flex-row  justify-content-center align-item-center"
                             [ngClass]="{'modificada': comprobar(item.id)}" *ngFor="let item of sindicatos">
+                            <div class="cont" style="width: 10%;">
+                                <p class="small mt-2">{{item.siglas}}</p>
+                            </div>
                             <div class="cont" style="width: 30%;">
                                 <p class="small mt-2">{{item.nombre}}</p>
                             </div>
