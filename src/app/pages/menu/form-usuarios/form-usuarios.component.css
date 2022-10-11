@@ -1,0 +1,47 @@
+.input-content label{
+    left: 5px;
+    top: -20px;
+    font-size: 80%;
+  }
+  .input-content{
+    margin: 5px;
+    color: white;
+    border: 1px solid #6c757d;
+  }
+  
+  .in:disabled{
+    color: #6b6b6b;
+    cursor: not-allowed;
+  }
+  
+  
+  .in{
+    border: none;
+    width: 95%;
+    padding: 10px;
+  }
+  
+  select.inselect{
+    background-color: transparent;
+    width: 20px;
+    border: 0;
+    outline: 0;
+    color: white;
+    padding: 0;
+  }
+  
+  
+  .in::placeholder{
+    font-size: small;
+    text-overflow: ellipsis;
+  }
+  
+  
+  .input-content.error{
+    color: #7e2c34;
+    border: 1px solid #7e2c34;
+  }
+  
+  .btn:disabled{
+    cursor: not-allowed;
+  }

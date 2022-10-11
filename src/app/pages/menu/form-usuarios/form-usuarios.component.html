@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-2 position-relative">
+                <button
+                    class="btn text-white d-flex flex-row justify-content-center align-item-center position-absolute"
+                    style="top: -5px;
+                left: -40px;" routerLink="../admin-usuarios"><i class="bi bi-chevron-left h5 "></i></button>
+
+            </div>
+            <h5 class="h5 text-white ">Formulario usuario</h5>
+            <form action=""
+                class="solicitud-form p-4 border border-secondary shadow-sm rounded d-flex flex-row flex-wrap">
+
+                <div class="input-content mt-4 rounded position-relative"
+                    [ngClass]="{'error': comprobarUsuario(usuario)}" style="width: 24%">
+                    <label for="usuario" class="in-text position-absolute small">Usuario:</label>
+                    <input type="text" id="usuario" class="in small w-100" placeholder="Usuario unico en el sistema"
+                        name="usuario" [(ngModel)]="usuario.usuario">
+                </div>
+                <div class="input-content mt-4 rounded position-relative" style="width: 24%">
+                    <label for="nombre" class="in-text position-absolute small">Nombre:</label>
+                    <input type="text" id="nombre" class="in small w-100" placeholder="Nombre del usuario" name="nombre"
+                        [(ngModel)]="usuario.nombre">
+                </div>
+                <div class="input-content mt-4 rounded position-relative" style="width: 24%" [ngClass]="{'error': usuario.password!=usuario.confirm}">
+                    <label for="pass" class="in-text position-absolute small">Contraseña:</label>
+                    <input type="password" id="pass" class="in small w-100"
+                        placeholder="Contraseña a utilizar de forma segura" name="password"
+                        [(ngModel)]="usuario.password">
+                </div>
+                <div class="input-content mt-4 rounded position-relative" style="width: 24%" [ngClass]="{'error': usuario.password!=usuario.confirm}">
+                    <label for="confirm" class="in-text position-absolute small">Confirmacion de
+                        contraseña:</label>
+                    <input type="password" id="confirm" class="in small w-100" placeholder="Confirmacion de contraseña"
+                        name="confirm" [(ngModel)]="usuario.confirm">
+                </div>
+                <div class="input-content mt-4 rounded position-relative" style="width: 24%">
+                    <label for="correo" class="in-text position-absolute small">Correo:</label>
+                    <input type="text" id="correo" class="in small w-100"
+                        placeholder="Correo de la institucion example@ctc.cu" name="correo"
+                        [(ngModel)]="usuario.correo">
+                </div>
+                <div class="input-content mt-4 rounded position-relative d-flex justify-content-center align-item-center p-2"
+                    style="width: 24%" [ngClass]="{'error': usuario.rol==undefined|| usuario.rol=='undefined'}">
+                    <label for="rol" class="in-text position-absolute small">Rol:</label>
+                    <select type="text" id="rol" class="inselect small w-100" name="rol" [(ngModel)]="usuario.rol">
+                        <option value="undefined" class="bg-dark text-muted">(seleccione uno)</option>
+                        <option value="'usuario'" class="bg-dark text-muted">usuario</option>
+                        <option value="'admin'" class="bg-dark text-muted">admin</option>
+                        <option value="'técnico'" class="bg-dark text-muted">técnico</option>
+                    </select>
+                </div>
+
+                <div class="input-content mt-4 rounded position-relative d-flex justify-content-center align-item-center p-2"
+                    [ngClass]="{'error': usuario.piso==undefined|| usuario.piso=='undefined'}" style="width: 24%">
+                    <label for="nombre" class="in-text position-absolute small">Piso:</label>
+                    <select name="usuario" id="usuario" class="inselect small w-100" [(ngModel)]="usuario.piso">
+                        <option value="undefined" selected>Seleccione un piso</option>
+                        <option [value]="item.id" *ngFor="let item of pisos" class="bg-dark text-muted">
+                            {{item.numero}}</option>
+                    </select>
+                </div>
+                <div class="d-flex w-100 flex-row-reverse">
+                    <button class="btn btn-dark text-white mx-1" routerLink="../admin-usuarios">Cancelar</button>
+                    <button class="btn btn-dark text-white mx-1" [disabled]="disabled()"
+                        (click)="addUsuario()">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

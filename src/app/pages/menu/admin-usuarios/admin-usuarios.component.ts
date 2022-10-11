@@ -12,6 +12,7 @@ export class AdminUsuariosComponent implements OnInit {
   loading: boolean = false;
   cambios: any[] = [];
   pisos: any[] = [];
+  eliminando: boolean = false;
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
@@ -67,5 +68,9 @@ export class AdminUsuariosComponent implements OnInit {
         }
       });
     });
+  }
+
+  eliminar(){
+    
   }
 }

@@ -11,6 +11,8 @@ import { AdminSolicitudComponent } from './admin-solicitud/admin-solicitud.compo
 import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.component';
 import { AdminSindicatoPisoComponent } from './admin-sindicato-piso/admin-sindicato-piso.component';
 import { FormSindicatoComponent } from './form-sindicato/form-sindicato.component';
+import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
+import { EliminarComponent } from '../components/eliminar/eliminar.component';
 
 
 
@@ -22,10 +24,12 @@ import { FormSindicatoComponent } from './form-sindicato/form-sindicato.componen
     ListadoComponent,
     SolicitudComponent,
     CalendarioComponent,
+    EliminarComponent,
     AdminSolicitudComponent,
     AdminUsuariosComponent,
     AdminSindicatoPisoComponent,
     FormSindicatoComponent,
+    FormUsuariosComponent,
   ],
   imports: [
     FormsModule,

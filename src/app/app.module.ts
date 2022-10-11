@@ -17,6 +17,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { MenuModule } from './pages/menu/menu.module';
 import { MenuItemComponent } from './pages/menu/menu-item/menu-item.component';
+import { EliminarComponent } from './pages/components/eliminar/eliminar.component';
 
 
 @NgModule({
