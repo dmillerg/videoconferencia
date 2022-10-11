@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-eliminar',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class EliminarComponent implements OnInit {
 
+  @Input() id: number = -1;
   @Output() emisor: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

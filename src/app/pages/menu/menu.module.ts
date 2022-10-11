@@ -13,6 +13,7 @@ import { AdminSindicatoPisoComponent } from './admin-sindicato-piso/admin-sindic
 import { FormSindicatoComponent } from './form-sindicato/form-sindicato.component';
 import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 import { EliminarComponent } from '../components/eliminar/eliminar.component';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 
 
@@ -30,6 +31,7 @@ import { EliminarComponent } from '../components/eliminar/eliminar.component';
     AdminSindicatoPisoComponent,
     FormSindicatoComponent,
     FormUsuariosComponent,
+    ConsultaComponent,
   ],
   imports: [
     FormsModule,

@@ -13,6 +13,7 @@ export class AdminUsuariosComponent implements OnInit {
   cambios: any[] = [];
   pisos: any[] = [];
   eliminando: boolean = false;
+  id: number = -1;
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
@@ -70,7 +71,16 @@ export class AdminUsuariosComponent implements OnInit {
     });
   }
 
-  eliminar(){
-    
+  eliminar(event: any) {
+    if (event == "aceptar") {
+      this.api.deleteUsuario(this.id).subscribe(result => {
+       this.getUsuarios();
+       this.getPisos();
+       this.cambios = [];
+       this.eliminando = false;
+      })
+    } else if(event=='cancelar') {
+      this.eliminando = false;
+    }
   }
 }

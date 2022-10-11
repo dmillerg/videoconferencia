@@ -23,13 +23,13 @@
                     <input type="text" id="nombre" class="in small w-100" placeholder="Nombre del usuario" name="nombre"
                         [(ngModel)]="usuario.nombre">
                 </div>
-                <div class="input-content mt-4 rounded position-relative" style="width: 24%" [ngClass]="{'error': usuario.password!=usuario.confirm}">
+                <div class="input-content mt-4 rounded position-relative" style="width: 24%" [ngClass]="{'error': usuario.password!=usuario.confirm || (usuario.password && usuario.password.length<8)}">
                     <label for="pass" class="in-text position-absolute small">Contraseña:</label>
                     <input type="password" id="pass" class="in small w-100"
                         placeholder="Contraseña a utilizar de forma segura" name="password"
                         [(ngModel)]="usuario.password">
                 </div>
-                <div class="input-content mt-4 rounded position-relative" style="width: 24%" [ngClass]="{'error': usuario.password!=usuario.confirm}">
+                <div class="input-content mt-4 rounded position-relative" style="width: 24%" [ngClass]="{'error': usuario.password!=usuario.confirm || (usuario.password && usuario.password.length<8)}">
                     <label for="confirm" class="in-text position-absolute small">Confirmacion de
                         contraseña:</label>
                     <input type="password" id="confirm" class="in small w-100" placeholder="Confirmacion de contraseña"
@@ -46,9 +46,9 @@
                     <label for="rol" class="in-text position-absolute small">Rol:</label>
                     <select type="text" id="rol" class="inselect small w-100" name="rol" [(ngModel)]="usuario.rol">
                         <option value="undefined" class="bg-dark text-muted">(seleccione uno)</option>
-                        <option value="'usuario'" class="bg-dark text-muted">usuario</option>
-                        <option value="'admin'" class="bg-dark text-muted">admin</option>
-                        <option value="'técnico'" class="bg-dark text-muted">técnico</option>
+                        <option value="usuario" class="bg-dark text-muted">usuario</option>
+                        <option value="admin" class="bg-dark text-muted">admin</option>
+                        <option value="técnico" class="bg-dark text-muted">técnico</option>
                     </select>
                 </div>
 

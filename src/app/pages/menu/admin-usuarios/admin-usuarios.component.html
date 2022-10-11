@@ -17,7 +17,9 @@
                 </div>
                 <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>rol</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 14.2%;"><strong>piso</strong></div>
-                <div class="head text-white font-weight-bold small" style="width: 5%;"><button routerLink="../form-usuario" class="btn btn-success text-white"><i class="bi bi-plus"></i></button></div>
+                <div class="head text-white font-weight-bold small" style="width: 5%;"><button
+                        routerLink="../form-usuario" class="btn btn-success text-white"><i
+                            class="bi bi-plus"></i></button></div>
             </div>
             <hr class="text-white">
 
@@ -25,8 +27,7 @@
         <div class="col-sm-12 position-relative" style="max-height: 300px;overflow-y: auto;">
 
             <div class="content p-1 rounded d-flex flex-row  justify-content-center align-item-center"
-            [ngClass]="{'modificada': comprobar(item.id)}"
-                *ngFor="let item of usuarios">
+                [ngClass]="{'modificada': comprobar(item.id)}" *ngFor="let item of usuarios">
                 <div class="cont" style="width: 14.2%;">
                     <p class="small mt-2">{{item.usuario}}</p>
                 </div>
@@ -43,19 +44,21 @@
                     <p class="small mt-2">{{item.ultima_sesion| date: 'dd/MM/yyyy'}}</p>
                 </div>
                 <div class="cont" style="width: 14.2%;">
-                    <select name="rol" id="rol" class="in small" [(ngModel)]="item.rol" (ngModelChange)="addRow(item)" >
+                    <select name="rol" id="rol" class="in small" [(ngModel)]="item.rol" (ngModelChange)="addRow(item)">
                         <option value="usuario">usuario</option>
                         <option value="admin">admin</option>
                         <option value="técnico">técnico</option>
                     </select>
                 </div>
                 <div class="cont" style="width: 14.2%;">
-                    <select name="piso" id="piso" class="in small"  [(ngModel)]="item.piso.id" (ngModelChange)="addRow(item)" >
+                    <select name="piso" id="piso" class="in small" [(ngModel)]="item.piso.id"
+                        (ngModelChange)="addRow(item)">
                         <option *ngFor="let item2 of pisos" [value]="item2.id">{{item2.numero}}</option>
                     </select>
                 </div>
                 <div class="cont text-center" style="width: 5%;">
-                    <div class="icon-content mt-2 w-100 d-flex justify-content-center align-item-center" style="cursor: pointer;">
+                    <div class="icon-content mt-2 w-100 d-flex justify-content-center align-item-center"
+                        style="cursor: pointer;" (click)="eliminando=!eliminando; id = item.id">
                         <img src="assets/icons/trash.png" class="icon" width="25px" height="25px" alt="">
                         <img src="assets/icons/trashhover.apng" class="icon-hover" width="25px" height="25px" alt="">
                     </div>
@@ -66,11 +69,13 @@
                 <div class="spinner-grow mt-4 text-center" role="status">
                 </div>
             </div>
-            
+
         </div>
     </div>
-    <div class="row d-flex flex-row-reverse"><button class="btn btn-dark text-white small w-25 shadow-lg" [disabled]="cambios.length==0" (click)="aplicar();">Aplicar
+    <div class="row d-flex flex-row-reverse"><button class="btn btn-dark text-white small w-25 shadow-lg"
+            [disabled]="cambios.length==0" (click)="aplicar();">Aplicar
             cambios</button></div>
-
-            <app-eliminar (emisor)="eliminar()"></app-eliminar>
+    <div *ngIf="eliminando">
+        <app-eliminar (emisor)="eliminar($event)"></app-eliminar>
+    </div>
 </div>
