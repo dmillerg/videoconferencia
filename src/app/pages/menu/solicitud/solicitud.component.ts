@@ -152,13 +152,13 @@ export class SolicitudComponent implements OnInit {
   }
 
   error() {
-    console.log('hora fin', Number(this.solicitud.hora_fin), ' hora inicio ', Number(this.solicitud.hora_inicio));
-    console.log('minuto fin', Number(this.solicitud.minuto_fin), ' minuto_inicio ', Number(this.solicitud.minuto_inicio));
+    // console.log('hora fin', Number(this.solicitud.hora_fin), ' hora inicio ', Number(this.solicitud.hora_inicio));
+    // console.log('minuto fin', Number(this.solicitud.minuto_fin), ' minuto_inicio ', Number(this.solicitud.minuto_inicio));
 
-    console.log('condicion', (Number(this.solicitud.hora_fin) * 60 + Number(this.solicitud.minuto_fin)) - (Number(this.solicitud.hora_inicio) * 60 + Number(this.solicitud.minuto_inicio)));
-    console.log('inicio', Number(this.solicitud.hora_inicio * 60 + this.solicitud.minuto_inicio));
-    console.log('fin', Number(this.solicitud.hora_fin * 60 + Number(this.solicitud.minuto_fin)));
-    console.log('====================================');
+    // console.log('condicion', (Number(this.solicitud.hora_fin) * 60 + Number(this.solicitud.minuto_fin)) - (Number(this.solicitud.hora_inicio) * 60 + Number(this.solicitud.minuto_inicio)));
+    // console.log('inicio', Number(this.solicitud.hora_inicio * 60 + this.solicitud.minuto_inicio));
+    // console.log('fin', Number(this.solicitud.hora_fin * 60 + Number(this.solicitud.minuto_fin)));
+    // console.log('====================================');
 
     return (Number(this.solicitud.hora_fin) * 60 + Number(this.solicitud.minuto_fin)) - (Number(this.solicitud.hora_inicio) * 60 + Number(this.solicitud.minuto_inicio)) < 60;
   }
