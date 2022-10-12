@@ -35,8 +35,9 @@
 .menu-list {
     position: absolute;
     top: 30px;
-    display: none;
+    /* display: none; */
     opacity: 0;
+    visibility: hidden;
     max-height: 200px;
     max-width: 200px;
     background-color: white;
@@ -44,17 +45,22 @@
     z-index: 99;
 }
 
-.menu-item{
+.menu-item {
     width: 100%;
     padding: 10px;
     font-size: 75%;
 }
 
 .menu:hover .menu-list {
-    display: block;
+    /* display: block; */
     opacity: 1;
+    visibility: visible;
     transition: all .3s ease-in-out;
 
+}
+
+.menu-item:hover ~ .menu-list{
+    visibility: visible;
 }
 
 .in {
@@ -68,26 +74,24 @@
     margin-left: 10px;
 }
 
-.text-shadow{
-   text-shadow: 3px 0px 17px rgba(0,0,0,0.88);
+.text-shadow {
+    text-shadow: 3px 0px 17px rgba(0, 0, 0, 0.88);
 }
 
-.icon-content{
+.icon-content {}
 
-}
-
-.icon{
+.icon {
     display: block;
 }
 
-.icon-hover{
+.icon-hover {
     display: none;
 }
 
-.icon-content:hover .icon{
+.icon-content:hover .icon {
     display: none;
 }
 
-.icon-content:hover .icon-hover{
+.icon-content:hover .icon-hover {
     display: block;
 }
