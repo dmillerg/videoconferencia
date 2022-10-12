@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { SessionStorageService } from 'ngx-webstorage';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -14,11 +16,22 @@ export class AdminUsuariosComponent implements OnInit {
   pisos: any[] = [];
   eliminando: boolean = false;
   id: number = -1;
-  constructor(private api: ApiService) { }
+  searchfilter: any = '';
+  constructor(private api: ApiService, private storage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.getUsuarios();
     this.getPisos();
+    this.searchFilter();
+    this.storage.store('page',"admin-usuarios") 
+  }
+
+  searchFilter() {
+    this.storage.observe('search').subscribe(result => {
+      console.log(result);
+      if (this.storage.retrieve('page') == "admin-usuarios")
+        this.searchfilter = result;
+    });
   }
 
   getUsuarios() {
@@ -74,12 +87,12 @@ export class AdminUsuariosComponent implements OnInit {
   eliminar(event: any) {
     if (event == "aceptar") {
       this.api.deleteUsuario(this.id).subscribe(result => {
-       this.getUsuarios();
-       this.getPisos();
-       this.cambios = [];
-       this.eliminando = false;
+        this.getUsuarios();
+        this.getPisos();
+        this.cambios = [];
+        this.eliminando = false;
       })
-    } else if(event=='cancelar') {
+    } else if (event == 'cancelar') {
       this.eliminando = false;
     }
   }

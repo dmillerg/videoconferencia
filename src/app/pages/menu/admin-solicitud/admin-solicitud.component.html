@@ -1,23 +1,26 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-2 position-relative">
-            <button class="btn text-white d-flex flex-row justify-content-center align-item-center position-absolute" style="top: 0px;
-            left: -40px;"
-                routerLink="../listado"><i
-                    class="bi bi-chevron-left h5 "></i></button>
+            <button class="btn text-white d-flex flex-row justify-content-center align-item-center position-absolute"
+                style="top: 0px;
+            left: -40px;" routerLink="../listado"><i class="bi bi-chevron-left h5 "></i></button>
         </div>
         <div class="col-sm-12 my-2">
             <div class="header d-flex">
-                <div class="head text-white font-weight-bold small" style="width: 2%;"><input type="checkbox" name="" id=""></div>
+                <div class="head text-white font-weight-bold small" style="width: 2%;"><input type="checkbox" name=""
+                        id=""></div>
                 <div class="head text-white font-weight-bold small" style="width: 12%;"><strong>nombre</strong></div>
-                <div class="head text-white font-weight-bold small" style="width: 20%;"><strong>descripcion</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 20%;"><strong>descripcion</strong>
+                </div>
                 <div class="head text-white font-weight-bold small" style="width: 10%;"><strong>fecha</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 5%;"><strong>horario</strong></div>
-                <div class="head text-white font-weight-bold small" style="width: 10%;"><strong>hora inicio</strong></div>
+                <div class="head text-white font-weight-bold small" style="width: 10%;"><strong>hora inicio</strong>
+                </div>
                 <div class="head text-white font-weight-bold small" style="width: 10%;"><strong>hora fin</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 8%;"><strong>estado</strong></div>
                 <div class="head text-white font-weight-bold small" style="width: 15%;"><strong>encargado</strong></div>
-                <div class="head text-white font-weight-bold small" style="width: 15%;"><strong>tecnico de respaldo</strong>
+                <div class="head text-white font-weight-bold small" style="width: 15%;"><strong>tecnico de
+                        respaldo</strong>
                 </div>
                 <div class="head text-white font-weight-bold" style="width: 15%;"><strong>salon</strong></div>
             </div>
@@ -26,10 +29,11 @@
         <div class="col-sm-12 position-relative" style="max-height: 300px;overflow-y: auto;">
 
             <div class="content p-1 rounded d-flex flex-row  justify-content-center align-item-center"
-                 [ngClass]="{'modificada': comprobar(item.id)}"
+                [ngClass]="{'modificada': comprobar(item.id), 'not-allowed': item.not_allowed}"
                 *ngFor="let item of videoconferencias">
                 <div class="cont" style="width: 2%;">
-                    <input type="checkbox" class="small" style="margin-top: 12px;" name="" id="" (click)="addRow(item, $event)">
+                    <input type="checkbox" class="small" style="margin-top: 12px;" name="" id=""
+                        (click)="addRow(item, $event)">
                 </div>
                 <div class="cont" style="width: 12%;">
                     <p class="small mt-2">{{item.nombre}}</p>
@@ -51,37 +55,41 @@
                     <p class="small mt-2">{{item.hora_fin | date: 'hh:mm a'}}</p>
                 </div>
                 <div class="cont" style="width: 8%;">
-                    <select name="estado" id="" class="in small" [(ngModel)]="item.estado" (ngModelChange)="addRow(item)">
+                    <select name="estado" id="" class="in small" [(ngModel)]="item.estado"
+                        (ngModelChange)="addRow(item)" [disabled]="item.not_allowed">
                         <option value="0">En espera</option>
                         <option value="1">Aprobado</option>
                         <option value="2">Denegado</option>
                     </select>
                 </div>
                 <div class="cont" style="width: 15%;">
-                    <select name="encargado" id="encargado" [(ngModel)]="item.encargado.id" (ngModelChange)="addRow(item)"
-                        class="in small">
+                    <select name="encargado" id="encargado" [(ngModel)]="item.encargado.id"
+                        (ngModelChange)="addRow(item)" [disabled]="item.not_allowed" class="in small">
                         <option [value]="item2.id" *ngFor="let item2 of tecnicos">{{item2.usuario}}</option>
                     </select>
                 </div>
                 <div class="cont " style="width: 15%;">
-                    <select name="respaldo" id="respaldo" class="in small" [(ngModel)]="item.tecnico_respaldo.id" (ngModelChange)="addRow(item)">
+                    <select name="respaldo" id="respaldo" class="in small" [(ngModel)]="item.tecnico_respaldo.id"
+                        (ngModelChange)="addRow(item)" [disabled]="item.not_allowed">
                         <option [value]="item2.id" *ngFor="let item2 of tecnicos">{{item2.usuario}}</option>
                     </select>
                 </div>
                 <div class="cont " style="width: 15%;">
-                    <select name="salon" id="salon" [(ngModel)]="item.salon" class="in small" (ngModelChange)="addRow(item)">
-                        <option value="-1" >(no asignado)</option>
+                    <select name="salon" id="salon" [(ngModel)]="item.salon" class="in small"
+                        [disabled]="item.not_allowed" (ngModelChange)="addRow(item)">
+                        <option value="-1">(no asignado)</option>
                         <option [value]="'TELMAN'">TELMAN</option>
                         <option [value]="'CELIA'">CELIA</option>
                         <option [value]="'JUAN MARINELLO'">JUAN MARINELLO</option>
                     </select>
                 </div>
-                
+
             </div>
-            <div class="position-absolute d-flex flex-row justify-content-center align-item-center" style="top: 0;left: 0;right: 0;bottom: 0;" *ngIf="loading">
+            <div class="position-absolute d-flex flex-row justify-content-center align-item-center"
+                style="top: 0;left: 0;right: 0;bottom: 0;" *ngIf="loading">
                 <div class="spinner-grow mt-4 text-center" role="status">
                     <!-- <span class="sr-only text-white text-shadow">Cargando...</span> -->
-                  </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuRoutingModule } from './menu-routing.module';
-import { VideosComponent } from '../videos/videos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ListadoComponent } from './listado/listado.component';
@@ -14,13 +13,13 @@ import { FormSindicatoComponent } from './form-sindicato/form-sindicato.componen
 import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 import { EliminarComponent } from '../components/eliminar/eliminar.component';
 import { ConsultaComponent } from './consulta/consulta.component';
+import { UsuarioPipe } from 'src/app/components/pipes/usuario.pipe';
+import { VideoconferenciaPipe } from 'src/app/components/pipes/videoconferencia.pipe';
 
 
 
 @NgModule({
   declarations: [
-    
-    // VideosComponent,
     MenuItemComponent,
     ListadoComponent,
     SolicitudComponent,
@@ -32,6 +31,8 @@ import { ConsultaComponent } from './consulta/consulta.component';
     FormSindicatoComponent,
     FormUsuariosComponent,
     ConsultaComponent,
+    UsuarioPipe,
+    VideoconferenciaPipe,
   ],
   imports: [
     FormsModule,

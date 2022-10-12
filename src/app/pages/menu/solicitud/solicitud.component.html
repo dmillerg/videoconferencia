@@ -15,10 +15,14 @@
                         [disabled]="disable_all" name="nombre" [(ngModel)]="solicitud.nombre">
                 </div>
 
-                <div class="input-content mt-4 rounded border border-secondary position-relative" style="width: 31%;">
+                <div  class="input-content mt-4 rounded position-relative d-flex justify-content-center align-item-center px-2 w-25">
                     <label for="nombre" class="in-text text-white position-absolute small">Citado:</label>
-                    <input type="text" id="citado" class="in" placeholder="Persona que la solicita" name="citado"
-                        [disabled]="disable_all" [(ngModel)]="solicitud.citado_por">
+                    <select name="citado" id="citado" class="inselect small w-100"
+                        [(ngModel)]="solicitud.citado_por.id">
+                        <option value="undefined" selected>Seleccione su usuario</option>
+                        <option [value]="item.id" *ngFor="let item of usuarios" class="bg-dark text-muted">
+                            {{item.usuario}}</option>
+                    </select>
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative" style="width: 31%;">
                     <label for="cantidad" class="in-text text-white position-absolute small">Personas:</label>
@@ -26,11 +30,12 @@
                         name="cantidad" [disabled]="disable_all" [(ngModel)]="solicitud.cant_personas">
                 </div>
                 <div class="input-content mt-4 rounded border border-secondary position-relative px-2"
-                    style="width: fit-content;">
+                    style="width: 20%;">
                     <label for="horario" class="in-text text-white position-absolute small">Horario:</label>
-                    <select id="horario" class="in bg-darki small shadow-sm" name="horario" [(ngModel)]="horario"
+                    <select id="horario" class="inselecte bg-darki small shadow-sm" name="horario" [(ngModel)]="horario"
                         (ngModelChange)="rellenarHorasMin()" [disabled]="disable_all || disable"
                         placeholder="Horario a realizar la videoconferencia">
+                        <option value="-1" class="bg-dark text-muted" selected>(Seleccione el horario)</option>
                         <option value="0" (click)="solicitud.mannana=true;solicitud.tarde=false;"
                             class="bg-dark text-muted">Mañana</option>
                         <option value="1" (click)="solicitud.mannana=false;solicitud.tarde=true;"
@@ -113,7 +118,7 @@
                 </div>
 
                 <button class="btn btn-dark mt-4" (click)="addVideoConferencia()"
-                    [disabled]="error() || solicitud.nombre.length==0 || solicitud.citado_por.length==0 || solicitud.descripcion.length==0">Aceptar</button>
+                    [disabled]="(error() || solicitud.nombre.length==0 || solicitud.citado_por.length==0 || solicitud.descripcion.length==0 || horario==-1) && !solicitud.not_allowed">Aceptar</button>
                 <!-- <div class="input-content">
                     <label for="nombre" class="in-text">nombre</label>
                     <input type="text" id="nombre" class="in">

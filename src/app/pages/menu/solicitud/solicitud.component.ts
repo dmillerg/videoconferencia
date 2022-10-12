@@ -26,13 +26,13 @@ export class SolicitudComponent implements OnInit {
     cant_personas: '',
     sindicato: -1,
   };
-  horario: number = 0;
+  horario: number = -1;
   now = moment();
 
   disable_all: boolean = false;
   disable: boolean = false;
 
-  not_allowed: any[] = [moment('2022-10-23')];
+  not_allowed: any[] = [];
   selected: any = this.now.add(4, 'days');
   dates: any[] = [];
 
@@ -42,24 +42,35 @@ export class SolicitudComponent implements OnInit {
   minutos_fin: number[] = [];
 
   sindicatos: any[] = [];
+  usuarios: any[] = [];
 
   constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {
     this.getDates()
     this.getSindicatos();
+    this.getUsuarios();
     this.rellenarHorasMin();
   }
 
   getDates() {
     this.api.getVideoConferencias().subscribe(result => {
       this.dates = result;
+      result.forEach((e:any)=>{
+        if( e.not_allowed) this.not_allowed.push(moment(e.fecha));
+      })
     })
   }
 
   getSindicatos() {
     this.api.getSindicato().subscribe(result => {
       this.sindicatos = result;
+    })
+  }
+
+  getUsuarios() {
+    this.api.getUsuarios().subscribe(result => {
+      this.usuarios = result.filter(e=>e.rol=='usuario');
     })
   }
 

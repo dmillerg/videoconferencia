@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SessionStorageService } from 'ngx-webstorage';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  search: any = '';
+  constructor(private storage: SessionStorageService, private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
+
+  }
+
+  buscar() {
+    this.storage.store('search', this.search);
+  }
+
+
+  logout() {
+    const formData = new FormData();
+    formData.append("id", this.storage.retrieve('usuario').id);
+    this.api.logout(formData).subscribe(result => {
+      this.storage.clear("usuario");
+      this.router.navigate(['']);
+    })
   }
 
 }

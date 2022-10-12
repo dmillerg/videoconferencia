@@ -95,7 +95,6 @@ export class CalendarioComponent implements OnInit {
       }
 
     });
-
     return entero ? 'occupied-total' : cont == 1 ? 'occupied-partial' : cont == 2 ? 'occupied-total' : '';
   }
 }

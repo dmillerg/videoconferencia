@@ -32,3 +32,12 @@
     background-color: rgba(0, 0, 0, 0.4);
     color: #2458a6;
 }
+
+.not-allowed{
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgb(109, 109, 109);
+}
+
+.not-allowed select{
+    color: rgb(109, 109, 109);
+}

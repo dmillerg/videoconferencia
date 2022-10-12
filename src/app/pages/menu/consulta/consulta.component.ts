@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import { SessionStorageService } from 'ngx-webstorage';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -8,16 +10,21 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ConsultaComponent implements OnInit {
 
-  selected: any={}
-  videoconferencias: any[]=[];
-  constructor(private api: ApiService) { }
+  now = moment();
+  selected: any = {}
+  videoconferencias: any[] = [];
+  constructor(private api: ApiService, public storage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.getVideoConferencia();
+    this.storage.store('page', "consultar")
   }
 
-  getVideoConferencia(){
-    this.api.getVideoConferencias().subscribe(result=> this.videoconferencias= result)
+  getVideoConferencia() {
+    this.api.getVideoConferencias().subscribe(result => this.videoconferencias = result)
   }
 
+  comprobarFecha(item: any) {
+    return this.now > item;
+  }
 }

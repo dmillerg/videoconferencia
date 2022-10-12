@@ -9,6 +9,12 @@
   border: 1px solid #6c757d;
 }
 
+.inselecte {
+  border: none;
+  width: 95%;
+  color: white;
+  height: 40px;
+}
 .in:disabled{
   color: #6b6b6b;
   cursor: not-allowed;
