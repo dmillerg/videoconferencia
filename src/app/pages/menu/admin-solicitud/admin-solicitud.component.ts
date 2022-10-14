@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionStorageService } from 'ngx-webstorage';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -14,11 +15,22 @@ export class AdminSolicitudComponent implements OnInit {
   cambios: any[] = [];
   eliminados: any[] = [];
   loading: boolean = false;
-  constructor(private api: ApiService) { }
+  searchfilter: any=''
+  constructor(private api: ApiService, private storage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.getVideoConferencias();
     this.getTecnicos();
+    this.storage.store('page',"admin-solicitud") ;
+    this.searchFilter();
+  }
+
+  searchFilter() {
+    this.storage.observe('search').subscribe(result => {
+      console.log(result);
+      if (this.storage.retrieve('page') == "admin-solicitud")
+        this.searchfilter = result;
+    });
   }
 
   getVideoConferencias() {

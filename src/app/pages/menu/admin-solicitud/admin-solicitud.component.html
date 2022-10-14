@@ -30,7 +30,7 @@
 
             <div class="content p-1 rounded d-flex flex-row  justify-content-center align-item-center"
                 [ngClass]="{'modificada': comprobar(item.id), 'not-allowed': item.not_allowed, 'eliminada':comprobarDeleted(item.id)}"
-                *ngFor="let item of videoconferencias">
+                *ngFor="let item of videoconferencias | allfilter: searchfilter">
                 <div class="cont" style="width: 2%;">
                     <input type="checkbox" class="small" style="margin-top: 12px;" name="" id=""
                         [checked]="comprobarDeleted(item.id)" (click)="addRowDelete(item)">

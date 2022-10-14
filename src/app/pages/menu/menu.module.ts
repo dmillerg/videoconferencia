@@ -15,6 +15,7 @@ import { EliminarComponent } from '../components/eliminar/eliminar.component';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { UsuarioPipe } from 'src/app/components/pipes/usuario.pipe';
 import { VideoconferenciaPipe } from 'src/app/components/pipes/videoconferencia.pipe';
+import { AllfilterPipe } from 'src/app/components/pipes/allfilter.pipe';
 
 
 
@@ -33,6 +34,7 @@ import { VideoconferenciaPipe } from 'src/app/components/pipes/videoconferencia.
     ConsultaComponent,
     UsuarioPipe,
     VideoconferenciaPipe,
+    AllfilterPipe,
   ],
   imports: [
     FormsModule,

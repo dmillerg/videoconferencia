@@ -44,6 +44,8 @@ export class SolicitudComponent implements OnInit {
   sindicatos: any[] = [];
   usuarios: any[] = [];
 
+  selected_once: boolean = false;
+
   constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {
@@ -106,6 +108,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   select(date: any) {
+    this.selected_once = true;
     this.selected = moment(moment(date.anno + '-' + ((date.month + 1) < 10 ? '0' + (date.month + 1) : (date.month + 1)) + '-' + ((date.day < 10) ? '0' + date.day : date.day)))
 
     const l = this.dates.filter(e => {
@@ -164,6 +167,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   disabled(){
-    this.disable = !this.solicitud.not_allowed;
+    this.disable_all = !this.solicitud.not_allowed;
+    // this.solicitud.not_allowed = 
   }
 }
