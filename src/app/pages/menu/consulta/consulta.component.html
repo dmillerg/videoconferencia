@@ -15,9 +15,32 @@
                         <small
                             class="card-subtitle mb-2 text-muted small position-absolute top-0 end-0 translate-middle p-2 border border-dark rounded bg-dark shadow-md">{{item.fecha
                             | date: 'dd/MM/yyyy'}}
-                            <div class="icon-content" *ngIf="!comprobarFecha(item)">
-                                <img src="assets/icons/userstatic.png" class="icon" width="25px" height="25px" alt="">
-                                <img src="assets/icons/userhover2.apng" class="icon-hover" width="25px" height="25px" alt="">
+                            <div class="d-flex">
+                                <div class="icon-content" *ngIf="item.estado == 1">
+                                    <img src="assets/icons/check.png" class="icon" width="25px" height="25px" alt="">
+                                    <img src="assets/icons/checkhover.apng" class="icon-hover" width="25px"
+                                        height="25px" alt="">
+                                </div>
+                                <div class="icon-content" *ngIf="item.estado == 2">
+                                    <img src="assets/icons/denied.png" class="icon" width="25px" height="25px" alt="">
+                                    <img src="assets/icons/deniedhover.apng" class="icon-hover" width="25px"
+                                        height="25px" alt="">
+                                </div>
+                                <div class="icon-content" *ngIf="item.encargado.id!=1||item.tecnico_respaldo.id!=1">
+                                    <img src="assets/icons/userstatic.png" class="icon" width="25px" height="25px" alt="">
+                                    <img src="assets/icons/userhover2.apng" class="icon-hover" width="25px"
+                                        height="25px" alt="">
+                                </div>
+                                <div class="icon-content" *ngIf="item.salon!=-1">
+                                    <img src="assets/icons/piso.png" class="icon" width="25px" height="25px" alt="">
+                                    <img src="assets/icons/pisohover.apng" class="icon-hover" width="25px"
+                                        height="25px" alt="">
+                                </div>
+                                <div class="icon-content" *ngIf="item.estado==0">
+                                    <img src="assets/icons/calendar.png" class="icon" width="25px" height="25px" alt="">
+                                    <img src="assets/icons/calendarhover.apng" class="icon-hover" width="25px"
+                                        height="25px" alt="">
+                                </div>
                             </div>
                         </small>
                         <p class="card-text text-muted small">{{item.descripcion}}</p>
