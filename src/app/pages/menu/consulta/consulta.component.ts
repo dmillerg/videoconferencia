@@ -25,6 +25,7 @@ export class ConsultaComponent implements OnInit {
   }
 
   comprobarFecha(item: any) {
-    return this.now > item;
+    console.log(item);
+    
   }
 }

@@ -8,7 +8,7 @@
             <div class="d-flex flex-wrap" style="max-height: 350px;overflow-y: auto;padding-top: 20px;">
                 <div *ngFor="let item of videoconferencias | videoconferencia: storage.retrieve('usuario').rol=='admin'?'':storage.retrieve('usuario').usuario"
                     class="card bg-dark shadow-md m-1 mt-4 p-1 position-relative" style="width: 18rem;"
-                    (click)="selected=item">
+                    (click)="selected=item; comprobarFecha(item)">
                     <div class="card-body">
                         <h5 class="card-title text-white">{{item.nombre}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">solicitado por: {{item.citado_por.usuario}}</h6>
@@ -101,11 +101,11 @@
                 </div>
                 <div class="d-flex">
                     <p class="small text-white">Salon: </p>
-                    <p class="small text-muted">{{selected.salon}}</p>
+                    <p class="small text-muted">{{selected.salon==-1?'(no asignado)':selected.salon}}</p>
                 </div>
                 <div class="d-flex">
                     <p class="small text-white">Sindicato: </p>
-                    <p class="small text-muted">{{selected.sindicato}}</p>
+                    <p class="small text-muted">{{selected.sindicato.nombre}}</p>
                 </div>
             </div>
         </div>
