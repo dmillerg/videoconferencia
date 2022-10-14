@@ -14,7 +14,7 @@ export class SolicitudComponent implements OnInit {
   solicitud: any = {
     nombre: '',
     descripcion: '',
-    citado_por: '',
+    citado_por: undefined,
     mannana: true,
     tarde: false,
     hora_inicio: 8,
@@ -22,7 +22,7 @@ export class SolicitudComponent implements OnInit {
     hora_fin: 8,
     minuto_fin: 0,
     estado: 0,
-    not_allowed: 0,
+    not_allowed: false,
     cant_personas: '',
     sindicato: -1,
   };
@@ -161,5 +161,9 @@ export class SolicitudComponent implements OnInit {
     // console.log('====================================');
 
     return (Number(this.solicitud.hora_fin) * 60 + Number(this.solicitud.minuto_fin)) - (Number(this.solicitud.hora_inicio) * 60 + Number(this.solicitud.minuto_inicio)) < 60;
+  }
+
+  disabled(){
+    this.disable = !this.solicitud.not_allowed;
   }
 }

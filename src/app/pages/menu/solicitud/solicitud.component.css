@@ -69,3 +69,8 @@ select.inselect {
 .btn:disabled{
   cursor: not-allowed;
 }
+
+select:disabled{
+  color: #4d4f51;
+  cursor: not-allowed;
+}

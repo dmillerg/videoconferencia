@@ -29,11 +29,11 @@
         <div class="col-sm-12 position-relative" style="max-height: 300px;overflow-y: auto;">
 
             <div class="content p-1 rounded d-flex flex-row  justify-content-center align-item-center"
-                [ngClass]="{'modificada': comprobar(item.id), 'not-allowed': item.not_allowed}"
+                [ngClass]="{'modificada': comprobar(item.id), 'not-allowed': item.not_allowed, 'eliminada':comprobarDeleted(item.id)}"
                 *ngFor="let item of videoconferencias">
                 <div class="cont" style="width: 2%;">
                     <input type="checkbox" class="small" style="margin-top: 12px;" name="" id=""
-                        (click)="addRow(item, $event)">
+                        [checked]="comprobarDeleted(item.id)" (click)="addRowDelete(item)">
                 </div>
                 <div class="cont" style="width: 12%;">
                     <p class="small mt-2">{{item.nombre}}</p>
@@ -93,7 +93,13 @@
             </div>
         </div>
     </div>
-    <div class="row d-flex flex-row-reverse"><button class="btn btn-dark text-white small w-25 shadow-lg"
-            (click)="aplicar()" [disabled]="cambios.length==0">Aplicar
-            cambios</button></div>
+    <div class="row d-flex flex-row-reverse btn-row">
+        <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" (click)="cancelar()"
+            [hidden]="cambios.length==0 && eliminados.length==0"> Cancelar</button>
+        <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" (click)="eliminar()"
+            [hidden]="eliminados.length==0"> Eliminar</button>
+        <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" (click)="aplicar()"
+            [disabled]="cambios.length==0">Aplicar
+            cambios</button>
+    </div>
 </div>

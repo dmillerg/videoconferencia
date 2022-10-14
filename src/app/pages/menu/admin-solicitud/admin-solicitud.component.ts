@@ -12,6 +12,7 @@ export class AdminSolicitudComponent implements OnInit {
   videoconferencias: any[] = [];
   tecnicos: any[] = [];
   cambios: any[] = [];
+  eliminados: any[] = [];
   loading: boolean = false;
   constructor(private api: ApiService) { }
 
@@ -34,14 +35,30 @@ export class AdminSolicitudComponent implements OnInit {
     });
   }
 
-  addRow(row: any, check: any={}) {
-    if (this.cambios.filter(e=>e.id==row.id).length==0)
-    this.cambios.push(row);
-    else if(!check.target.checked) this.cambios = this.cambios.filter(e=>e.id!=row.id);
+  addRow(row: any, check: any = {}) {
+    if (this.cambios.filter(e => e.id == row.id).length == 0)
+      this.cambios.push(row);
+    else if (!check.target.checked) this.cambios = this.cambios.filter(e => e.id != row.id);
   }
 
   comprobar(id: any) {
     return this.cambios.filter(e => e.id == id).length > 0
+  }
+
+  addRowDelete(row: any) {
+    if (this.eliminados.filter(e => e.id == row.id).length == 0) this.eliminados.push(row);
+    else this.eliminados = this.eliminados.filter(e => e.id != row.id)
+    console.log(this.eliminados);
+    
+  }
+
+  comprobarDeleted(id: any) {
+    return this.eliminados.filter(e => e.id == id).length > 0
+  }
+
+  cancelar() {
+    this.eliminados = [];
+    this.cambios = [];
   }
 
   aplicar() {
@@ -49,7 +66,7 @@ export class AdminSolicitudComponent implements OnInit {
       const formData = new FormData();
       formData.append('nombre', e.nombre);
       formData.append('descripcion', e.descripcion);
-      formData.append('citado_por', e.citado_por);
+      formData.append('citado_por', e.citado_por.id);
       formData.append('mannana', e.mannana);
       formData.append('tarde', e.tarde);
       formData.append('fecha', e.fecha);
@@ -77,10 +94,10 @@ export class AdminSolicitudComponent implements OnInit {
     });
   }
 
-  eliminar(){
-    this.cambios.forEach((e,i)=>{
-      this.api.deleteVideoConferencia(e.id).subscribe(result=>{
-        if (i == this.cambios.length - 1) {
+  eliminar() {
+    this.eliminados.forEach((e, i) => {
+      this.api.deleteVideoConferencia(e.id).subscribe(result => {
+        if (i == this.eliminados.length - 1) {
           this.getVideoConferencias();
         }
       });
