@@ -1,17 +1,17 @@
-<div class="container-fluid">
+<div class="container-fluid" >
     <div class="row">
         <div class="col-sm-8">
-            <div class="w-75" *ngIf="!selected_once">
+            <div class="w-75" *ngIf="!selected_once" [@listAnimation]="'enter'">
                 <h1 class="display-3 text-white">Seleccione un día</h1>
                 <p class="text-white mt-4">Usted debe seleccionar un día valido en el calendario antes de poder acceder al
                     formulario de la videoconferencia. Tenga presente la leyenda de colores en el lado derecho del calendario. Debe asegurarse de que todos los datos ingresados sean correctos de otra forma no podrá editarlos más adelante.</p>
             </div>
-            <div class="d-flex justify-content-start align-item-center position-relative" *ngIf="selected_once">
+            <div class="d-flex justify-content-start align-item-center position-relative" *ngIf="selected_once" [@scaleAnimation]="'enter'">
                 <button class="btn position-absolute" style="margin-top: -5px;left: -40px;"><i
                         class="bi bi-chevron-left text-white h5" routerLink="../listado"></i></button>
                 <h5 class="h5 text-white">Solicitud de videoconferencia</h5>
             </div>
-            <form action="" *ngIf="selected_once"
+            <form action="" *ngIf="selected_once" [@scaleAnimation]="'enter'"
                 class="solicitud-form p-4 border border-secondary shadow-sm rounded d-flex flex-row flex-wrap">
 
                 <div class="input-content mt-4 rounded border border-secondary position-relative" style="width: 31%;">

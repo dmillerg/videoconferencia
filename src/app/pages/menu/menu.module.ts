@@ -16,6 +16,9 @@ import { ConsultaComponent } from './consulta/consulta.component';
 import { UsuarioPipe } from 'src/app/components/pipes/usuario.pipe';
 import { VideoconferenciaPipe } from 'src/app/components/pipes/videoconferencia.pipe';
 import { AllfilterPipe } from 'src/app/components/pipes/allfilter.pipe';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -38,6 +41,8 @@ import { AllfilterPipe } from 'src/app/components/pipes/allfilter.pipe';
   ],
   imports: [
     FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     CommonModule,
     MenuRoutingModule,
