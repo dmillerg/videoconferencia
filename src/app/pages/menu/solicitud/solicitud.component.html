@@ -23,7 +23,7 @@
                 <div
                     class="input-content mt-4 rounded position-relative d-flex justify-content-center align-item-center px-2 w-25">
                     <label for="nombre" class="in-text text-white position-absolute small">Citado:</label>
-                    <select name="citado" id="citado" class="inselect small w-100" [(ngModel)]="solicitud.citado_por">
+                    <select name="citado" id="citado" class="inselect small w-100" [(ngModel)]="solicitud.citado_por" [disabled]="storage.retrieve('usuario').rol!='admin'">
                         <option value="undefined" class="bg-dark text-muted" selected>Seleccione su usuario</option>
                         <option [value]="item.id" *ngFor="let item of usuarios" class="bg-dark text-muted">
                             {{item.usuario}}</option>

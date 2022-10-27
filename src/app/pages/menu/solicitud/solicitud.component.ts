@@ -74,13 +74,14 @@ export class SolicitudComponent implements OnInit {
 
   selected_once: boolean = false;
 
-  constructor(private api: ApiService, private storage: SessionStorageService, private router: Router) { }
+  constructor(private api: ApiService, public storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {
     this.getDates()
     this.getSindicatos();
     this.getUsuarios();
     this.rellenarHorasMin();
+    this.solicitud.citado_por = this.storage.retrieve('usuario').rol!='admin'? this.storage.retrieve('usuario').id:undefined
   }
 
   getDates() {
