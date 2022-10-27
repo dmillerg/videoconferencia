@@ -108,6 +108,16 @@ export class ApiService {
   }
 
   /**
+   * Actualiza la contraseña de un usuario
+   * @param formData datos actualizados
+   * @returns 
+   */
+   updatePassword(formData: FormData) {
+    let direccion = this.url + 'usuario';
+    return this.http.put(direccion, formData, { params: { token: this.storage.retrieve('usuario').token } });
+  }
+
+  /**
   * Elimina un usuario
   * @param id del usuario
   * @returns 

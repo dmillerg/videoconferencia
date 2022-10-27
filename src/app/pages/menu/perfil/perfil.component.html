@@ -15,20 +15,52 @@
         </div>
         <div class="col-sm-6">
             <div class="position-relative m-2">
-                <label for="usuario" class="text-white">usuario:</label>
-                <input type="text" class="in " id="usuario" name="usuario" [(ngModel)]="usuario.usuario">
+                <label for="usuario" class="text-white"
+                    [ngClass]="{'text-warning': usuario.usuario!=storage.retrieve('usuario').usuario,'text-white': usuario.usuario==storage.retrieve('usuario').usuario}">usuario:</label>
+                <input type="text" class="in "
+                    [ngClass]="{'modificado': usuario.usuario!=storage.retrieve('usuario').usuario}"
+                    id="usuario" name="usuario" [(ngModel)]="usuario.usuario">
             </div>
             <div class="position-relative m-2">
-                <label for="nombre" class="text-white">nombre:</label>
-                <input type="text" class="in " id="nombre" name="nombre" [(ngModel)]="usuario.nombre">
+                <label for="nombre" [ngClass]="{'text-warning': usuario.nombre!=storage.retrieve('usuario').nombre,'text-white': usuario.nombre==storage.retrieve('usuario').nombre}">nombre:</label>
+                <input type="text" class="in " [ngClass]="{'modificado': usuario.nombre!=storage.retrieve('usuario').nombre}" id="nombre" name="nombre" [(ngModel)]="usuario.nombre">
             </div>
             <div class="position-relative m-2">
-                <label for="correo" class="text-white">correo:</label>
-                <input type="text" class="in " id="correo" name="correo" [(ngModel)]="usuario.correo">
+                <label for="correo" [ngClass]="{'text-warning': usuario.correo!=storage.retrieve('usuario').correo,'text-white': usuario.correo==storage.retrieve('usuario').correo}">correo:</label>
+                <input type="text" class="in " [ngClass]="{'modificado': usuario.correo!=storage.retrieve('usuario').correo}" id="correo" name="correo" [(ngModel)]="usuario.correo">
             </div>
             <div class="position-relative m-2">
                 <label for="fecha_registro" class="text-white">fecha registro:</label>
-                <label type="text" class="in " disabled id="fecha_registro" name="fecha_registro" >{{usuario.fecha_registro| date: 'dd/MM/yyyy HH:mm a'}}</label>
+                <label type="text" class="in disabled" disabled id="fecha_registro"
+                    name="fecha_registro">{{usuario.fecha_registro| date: 'dd/MM/yyyy HH:mm a'}}</label>
             </div>
+            <div class="position-relative m-2">
+                <label for="rol" class="text-white">rol:</label>
+                <label type="text" class="in disabled" disabled id="rol" name="rol">{{usuario.rol}}</label>
+            </div>
+            <!-- <div class="position-relative m-2">
+                <label for="piso" class="text-white">piso:</label>
+                <label type="text" class="in " disabled id="piso"
+                    name="piso">{{usuario.piso.}}</label>
+            </div> -->
+            <button class="btn btn-dark text-white small w-50 shadow-lg mx-1" (click)="cambiarPass=!cambiarPass">Cambiar
+                contraseña</button>
+            <div class="position-relative m-2" *ngIf="cambiarPass">
+                <label for="pass"
+                    [ngClass]="{'text-danger': password!=confirm,'text-white': password==confirm}">contaseña:</label>
+                <input type="password" class="in " [ngClass]="{'error': password!=confirm}" id="pass" name="pass"
+                    [(ngModel)]="password">
+            </div>
+
+            <div class="position-relative m-2" *ngIf="cambiarPass">
+                <label for="confirm" class="text-white"
+                    [ngClass]="{'text-danger': password!=confirm,'text-white': password==confirm}">confirmación:</label>
+                <input type="password" class="in" [ngClass]="{'error': password!=confirm}" id="confirm" name="confirm"
+                    [(ngModel)]="confirm">
+            </div>
+        </div>
+        <div class="row d-flex flex-row-reverse btn-row">
+            <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" (click)="rellenarUser()"> Cancelar</button>
+            <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" [disabled]="validar() || password!=confirm" (click)="editar()"> Editar</button>
         </div>
     </div>

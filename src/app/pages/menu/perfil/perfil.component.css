@@ -4,3 +4,17 @@
     justify-content: center;
     align-items: center;
 }
+
+.in.error{
+    border-bottom: 1px solid #7e2c34;
+}
+
+.in.disabled{
+    border-bottom: 1px solid rgb(109, 109, 109);
+    color: rgb(109, 109, 109);
+}
+
+.in.modificado{
+    border-bottom: 1px solid #9a7d27;
+    color: #9a7d27;
+}
