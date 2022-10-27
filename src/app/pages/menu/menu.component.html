@@ -23,7 +23,8 @@
                         <img src="assets/icons/userhover2.apng" class="icon-hover" width="25px" height="25px" alt="">
                     </div>
                     <div class="menu-list rounded border border-secondary shadow-sm bg-dark text-center">
-                        <div class="menu-item rounded text-white small" style="white-space: nowrap;" (click)="logout()">Editar perfil</div>
+                        <div class="menu-item rounded text-white small" style="white-space: nowrap;">{{storage.retrieve('usuario').usuario}}</div>
+                        <div class="menu-item rounded text-white small" style="white-space: nowrap;" routerLink="/menu/perfil">Editar perfil</div>
                         <!-- <hr class="text-muted"> -->
                         <div class="menu-item rounded text-white small" style="white-space: nowrap;" (click)="logout()">Cerrar sesion</div>
                     </div>

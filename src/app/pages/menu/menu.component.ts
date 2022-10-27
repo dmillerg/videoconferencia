@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class MenuComponent implements OnInit {
 
   search: any = '';
-  constructor(private storage: SessionStorageService, private api: ApiService, private router: Router) { }
+  constructor(public storage: SessionStorageService, private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
 

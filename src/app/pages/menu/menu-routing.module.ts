@@ -6,6 +6,7 @@ import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.componen
 import { ConsultaComponent } from './consulta/consulta.component';
 import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 import { ListadoComponent } from './listado/listado.component';
+import { PerfilComponent } from './perfil/perfil.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'admin-sindicato-piso', component: AdminSindicatoPisoComponent },
   { path: 'form-usuario', component: FormUsuariosComponent },
   { path: 'consultar', component: ConsultaComponent },
+  { path: 'perfil', component: PerfilComponent },
 
 ];
 

@@ -18,6 +18,7 @@ import { VideoconferenciaPipe } from 'src/app/components/pipes/videoconferencia.
 import { AllfilterPipe } from 'src/app/components/pipes/allfilter.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
@@ -38,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UsuarioPipe,
     VideoconferenciaPipe,
     AllfilterPipe,
+    PerfilComponent,
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 position-relative">
+            <button class="btn text-white d-flex flex-row justify-content-center align-item-center position-absolute"
+                style="top: 0px;
+            left: -40px;" routerLink="../listado"><i class="bi bi-chevron-left h5 "></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 center">
+            <img src="assets/icons/edituserhover.apng" width="300px" class="svg-shadow" height="300px" alt="">
+            <p class="small text-muted text-center w-75">Detalles del usuario actual, aqui podra editar sus datos
+                personales siempre y cuando este permitido el cambio que vaya a hacer.</p>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="position-relative m-2">
+                <label for="usuario" class="text-white">usuario:</label>
+                <input type="text" class="in " id="usuario" name="usuario" [(ngModel)]="usuario.usuario">
+            </div>
+            <div class="position-relative m-2">
+                <label for="nombre" class="text-white">nombre:</label>
+                <input type="text" class="in " id="nombre" name="nombre" [(ngModel)]="usuario.nombre">
+            </div>
+            <div class="position-relative m-2">
+                <label for="correo" class="text-white">correo:</label>
+                <input type="text" class="in " id="correo" name="correo" [(ngModel)]="usuario.correo">
+            </div>
+            <div class="position-relative m-2">
+                <label for="fecha_registro" class="text-white">fecha registro:</label>
+                <label type="text" class="in " disabled id="fecha_registro" name="fecha_registro" >{{usuario.fecha_registro| date: 'dd/MM/yyyy HH:mm a'}}</label>
+            </div>
+        </div>
+    </div>
