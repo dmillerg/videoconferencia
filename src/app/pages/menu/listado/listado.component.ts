@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-listado',
@@ -15,6 +16,7 @@ export class ListadoComponent implements OnInit {
       subtitulo: 'Consultar el estado de mis peticiones',
       descripcion: 'Las peticiones de las videoconferencias cuentan con tres estados: en espera, aprobado, rechazado.',
       accion: 'menu/consultar',
+      rol: 'usuario'
     },
     {
       icono: 'bi-journal-text',
@@ -24,6 +26,7 @@ export class ListadoComponent implements OnInit {
       subtitulo: 'Solicitar una videoconferencia',
       descripcion: 'Las videoconferencias pueden ser reservadas desde aqui siempre y cuando el dia este disponible en el calendario.',
       accion: 'menu/solicitud',
+      rol: 'usuario'
     },
     {
       icono: 'bi-kanban-fill',
@@ -33,6 +36,7 @@ export class ListadoComponent implements OnInit {
       subtitulo: 'Administrar las solicitudes',
       descripcion: 'Administra las solicitudes cambiando el estado, tecnico, tecnico de respaldo y salon de se realizará la videoconferencia, a esta sección solo tendrá acceso el administrador del sitio.',
       accion: 'menu/admin-solicitud',
+      rol: 'admin'
     },
     {
       icono: 'bi-person-fill',
@@ -42,6 +46,7 @@ export class ListadoComponent implements OnInit {
       subtitulo: 'Administrar los usuarios',
       descripcion: 'Administra todos los usuarios del sistema pudiendo editar cada aspectos de estos.',
       accion: 'menu/admin-usuarios',
+      rol: 'admin'
     },
     {
       icono: 'bi-building',
@@ -51,9 +56,10 @@ export class ListadoComponent implements OnInit {
       subtitulo: 'Administrar los pisos y sindicatos de la ctc',
       descripcion: 'Permite gestionar los pisos y sindicatos correspondientes a esos pisos.',
       accion: 'menu/admin-sindicato-piso',
+      rol: 'admin'
     },
   ]
-  constructor() { }
+  constructor(public storage: SessionStorageService) { }
 
   ngOnInit(): void {
   }

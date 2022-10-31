@@ -1,7 +1,9 @@
 <div class="container-fluid" >
     <div class="row">
         <div class="col-sm-8">
-            <div class="w-75" *ngIf="!selected_once" [@listAnimation]="'enter'">
+            <div class="w-75 position-relative" *ngIf="!selected_once" [@listAnimation]="'enter'">
+                <button class="btn position-absolute" style="margin-top: 25px;left: -40px;"><i
+                    class="bi bi-chevron-left text-white h5" routerLink="../listado"></i></button>
                 <h1 class="display-3 text-white">Seleccione un día</h1>
                 <p class="text-white mt-4">Usted debe seleccionar un día valido en el calendario antes de poder acceder al
                     formulario de la videoconferencia. Tenga presente la leyenda de colores en el lado derecho del calendario. Debe asegurarse de que todos los datos ingresados sean correctos de otra forma no podrá editarlos más adelante.</p>

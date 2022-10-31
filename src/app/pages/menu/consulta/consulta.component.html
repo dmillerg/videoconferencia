@@ -6,7 +6,7 @@
             left: -40px;" routerLink="../listado"><i class="bi bi-chevron-left h5 "></i></button>
             <h5 class="h5 text-white">Videoconferencias</h5>
             <div class="d-flex flex-wrap" style="max-height: 350px;overflow-y: auto;padding-top: 20px;">
-                <div *ngFor="let item of videoconferencias | videoconferencia: storage.retrieve('usuario').rol=='admin'?'':storage.retrieve('usuario').usuario"
+                <div *ngFor="let item of videoconferencias | videoconferencia: storage.retrieve('usuario').rol=='admin'?'':storage.retrieve('usuario').usuario | allfilter: search"
                     class="card bg-dark shadow-md m-1 mt-4 p-1 position-relative" style="width: 18rem;"
                     (click)="selected=item; comprobarFecha(item)">
                     <div class="card-body">

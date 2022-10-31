@@ -13,11 +13,15 @@ export class ConsultaComponent implements OnInit {
   now = moment();
   selected: any = {}
   videoconferencias: any[] = [];
+  search: string = ''
   constructor(private api: ApiService, public storage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.getVideoConferencia();
-    this.storage.store('page', "consultar")
+    this.storage.store('page', "consultar");
+    this.storage.observe('search').subscribe(result=>{
+      this.search = result;
+    })
   }
 
   getVideoConferencia() {
