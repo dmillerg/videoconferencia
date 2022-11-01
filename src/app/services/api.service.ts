@@ -112,7 +112,7 @@ export class ApiService {
    * @param formData datos actualizados
    * @returns 
    */
-   updatePassword(formData: FormData) {
+  updatePassword(formData: FormData) {
     let direccion = this.url + 'usuario';
     return this.http.put(direccion, formData, { params: { token: this.storage.retrieve('usuario').token } });
   }
@@ -131,7 +131,7 @@ export class ApiService {
    * Obtiene todos los pisos 
    * @returns array pisos
    */
-   getPisos(): Observable<any[]> {
+  getPisos(): Observable<any[]> {
     let direccion = this.url + 'piso';
     return this.http.get<any[]>(direccion, { params: { token: this.storage.retrieve('usuario').token } });
   }
@@ -171,7 +171,7 @@ export class ApiService {
   * Obtiene todos los sindicatos
   * @returns array sindicatos
   */
-   getSindicato(): Observable<any[]> {
+  getSindicato(): Observable<any[]> {
     let direccion = this.url + 'sindicato';
     return this.http.get<any[]>(direccion, { params: { token: this.storage.retrieve('usuario').token } });
   }
@@ -204,6 +204,16 @@ export class ApiService {
   */
   deleteSindicato(id: number) {
     let direccion = this.url + 'sindicato/' + id;
-    return this.http.delete(direccion);
+    return this.http.delete(direccion, { params: { token: this.storage.retrieve('usuario').token } });
+  }
+
+  /**
+   * Obtiene las notificaciones relacionadas a ese usuario
+   * @param id del usuario
+   * @returns 
+   */
+  notificaciones(id: number): Observable<any[]> {
+    let direccion = this.url + 'notificaciones';
+    return this.http.get<any[]>(direccion, { params: { id: id, token: this.storage.retrieve('usuario').token } });
   }
 }

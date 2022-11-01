@@ -11,10 +11,11 @@ import { ApiService } from 'src/app/services/api.service';
 export class MenuComponent implements OnInit {
 
   search: any = '';
+  notificaciones: any[] = [];
   constructor(public storage: SessionStorageService, private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
-
+this.getNotificaciones();
   }
 
   buscar() {
@@ -28,6 +29,12 @@ export class MenuComponent implements OnInit {
     this.api.logout(formData).subscribe(result => {
       this.storage.clear("usuario");
       this.router.navigate(['']);
+    })
+  }
+
+  getNotificaciones() {
+    this.api.notificaciones(this.storage.retrieve('usuario').id).subscribe(result => {
+      this.notificaciones= result;
     })
   }
 

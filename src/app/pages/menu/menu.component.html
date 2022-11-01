@@ -9,12 +9,15 @@
         <div class="col-sm-2">
             <div class="d-flex flex-row justify-content-between align-item-center mt-2">
                 <div class="btn-icon svg-shadow menu">
-                    <div class="icon-content">
+                    <div class="icon-content position-relative">
                         <img src="assets/icons/noti.png" class="icon" width="25px" height="25px" alt="">
                         <img src="assets/icons/notihover.apng" class="icon-hover" width="25px" height="25px" alt="">
+                        <p [hidden]="notificaciones.length==0" class="small bg-danger  text-white px-1 rounded-circle position-absolute top-0 start-100 translate-middle text-center" >{{notificaciones.length}}</p>
                     </div>
-                    <div class="menu-list rounded border border-secondary shadow-sm bg-dark text-center">
-                        <div class="menu-item rounded text-muted small">usted no tiene notificaciones</div>
+                    <div class="menu-list rounded border border-secondary shadow-sm bg-dark text-center" style="width: fit-content;">
+                        <div class="menu-item rounded text-muted small" [hidden]="notificaciones.length>0">usted no tiene notificaciones</div>
+                        <div *ngFor="let item of notificaciones" style="white-space: nowrap" class="menu-item rounded text-white small">{{item.nombre}}</div>
+                      
                     </div>
                 </div>
                 <div class="btn-icon svg-shadow menu">

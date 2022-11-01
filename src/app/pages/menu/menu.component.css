@@ -21,3 +21,8 @@
 .menu{
     z-index: 20;
 }
+
+.menu-item:hover{
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: all .3s ease-in-out;
+}
