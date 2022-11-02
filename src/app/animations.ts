@@ -48,15 +48,24 @@ export const scale = trigger('scaleAnimation', [
     ]),
 ])
 
-export const photoShape = trigger('photo', [
-    transition('*<=>*', [
-        query(':enter',
-            [style({ transform: 'translateY(50%)', opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ transform: 'translateY(0%)', opacity: 1 })))],
-            { optional: true }
-        ),
+export const slideBottom = trigger('slideb', [
+    transition(':enter', [
+        style({ opacity: 0 , transform: 'translateY(20%)'}),
+        animate('1000ms', style({ opacity: 1, transform: 'translateY(0)' })),
     ]),
-    // transition(':leave', [
-    //     style({ transform: 'scale(1)', opacity: 1 }),
-    //     stagger('1000ms', animate('500ms', style({ transform: 'scale(0)', opacity: 0 }))),
-    // ]),
+    transition(':leave', [
+        style({ transform: 'scale(1)', opacity: 1 }),
+        animate('500ms', style({ transform: 'scale(0)', opacity: 0 })),
+    ]),
+])
+
+export const slideTop = trigger('slidet', [
+    transition(':enter', [
+        style({ opacity: 0 , transform: 'translateY(-20%)'}),
+        animate('1000ms', style({ opacity: 1, transform: 'translateY(0)' })),
+    ]),
+    transition(':leave', [
+        style({ transform: 'scale(1)', opacity: 1 }),
+        animate('500ms', style({ transform: 'scale(0)', opacity: 0 })),
+    ]),
 ])

@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
+import { listAnimation, slideBottom, slideTop } from 'src/app/animations';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  animations: [slideTop]
 })
 export class LoginComponent implements OnInit {
   usuario: string = '';
   password: string = '';
+  action: string=''
   constructor(private api: ApiService,private storage: SessionStorageService, private router: Router) { }
 
   ngOnInit(): void {

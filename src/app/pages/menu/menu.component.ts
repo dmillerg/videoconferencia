@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
+import { slideBottom } from 'src/app/animations';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  animations: [slideBottom]
 })
 export class MenuComponent implements OnInit {
 
   search: any = '';
   notificaciones: any[] = [];
+  action: string=''
   constructor(public storage: SessionStorageService, private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
-this.getNotificaciones();
+    this.getNotificaciones();
   }
 
   buscar() {
@@ -34,7 +37,7 @@ this.getNotificaciones();
 
   getNotificaciones() {
     this.api.notificaciones(this.storage.retrieve('usuario').id).subscribe(result => {
-      this.notificaciones= result;
+      this.notificaciones = result;
     })
   }
 
