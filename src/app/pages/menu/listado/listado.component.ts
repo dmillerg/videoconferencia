@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
+import { listAnimation } from 'src/app/animations';
 
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
-  styleUrls: ['./listado.component.css']
+  styleUrls: ['./listado.component.css'],
+  animations: [listAnimation]
 })
 export class ListadoComponent implements OnInit {
   menu: any[] = [

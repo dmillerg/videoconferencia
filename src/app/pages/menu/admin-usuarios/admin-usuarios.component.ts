@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
+import { listAnimation, slideBottom } from 'src/app/animations';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-admin-usuarios',
   templateUrl: './admin-usuarios.component.html',
-  styleUrls: ['./admin-usuarios.component.css']
+  styleUrls: ['./admin-usuarios.component.css'],
+  animations:[slideBottom, listAnimation]
 })
 export class AdminUsuariosComponent implements OnInit {
 

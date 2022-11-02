@@ -3,37 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { slideLeft, slideRight } from 'src/app/animations';
 import { ApiService } from 'src/app/services/api.service';
 
-const listAnimation = trigger('listAnimation', [
-  transition('* <=> *', [
-    query(':enter',
-      [style({ transform: 'translateY(50%)', opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ transform: 'translateY(0%)', opacity: 1  })))],
-      { optional: true }
-    ),
-    query(':leave',
-      animate('200ms', style({ opacity: 0 })),
-      { optional: true }
-    )
-  ])
-]);
 
 @Component({
   selector: 'app-solicitud',
   templateUrl: './solicitud.component.html',
   styleUrls: ['./solicitud.component.css'],
-  animations: [listAnimation,
-    trigger('scaleAnimation', [
-      transition(':enter', [
-        style({opacity: 0 }),
-        animate('500ms', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ transform: 'scale(1)', opacity: 1 }),
-        animate('500ms', style({ transform: 'scale(0)', opacity: 0 })),
-      ]),
-    ]),
-  ],
+  animations: [slideRight, slideLeft]
 })
 
 

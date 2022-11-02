@@ -1,4 +1,4 @@
-import { animation, style, animate, trigger, transition, useAnimation, query, stagger, state } from '@angular/animations';
+import { animation, style, animate, trigger, transition, useAnimation, query, stagger, state, animateChild, group } from '@angular/animations';
 
 export const transitionAnimation = animation([
     style({
@@ -26,7 +26,7 @@ export const triggerAnimation = trigger('openClose', [
 export const listAnimation = trigger('listAnimation', [
     transition('* <=> *', [
         query(':enter',
-            [style({ transform: 'translateY(50%)', opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ transform: 'translateY(0%)', opacity: 1 })))],
+            [style({ transform: 'translateY(50%)', opacity: 0 }), stagger('1000ms', animate('1000ms ease-out', style({ transform: 'translateY(0%)', opacity: 1 })))],
             { optional: true }
         ),
         query(':leave',
@@ -48,24 +48,61 @@ export const scale = trigger('scaleAnimation', [
     ]),
 ])
 
+/**
+ * Animacion de abajo hacia arriba
+ */
 export const slideBottom = trigger('slideb', [
     transition(':enter', [
-        style({ opacity: 0 , transform: 'translateY(20%)'}),
+        style({ opacity: 0, transform: 'translateY(20%)' }),
         animate('1000ms', style({ opacity: 1, transform: 'translateY(0)' })),
     ]),
     transition(':leave', [
-        style({ transform: 'scale(1)', opacity: 1 }),
-        animate('500ms', style({ transform: 'scale(0)', opacity: 0 })),
+        style({ transform: 'translateY(0)', opacity: 1 }),
+        animate('1000ms', style({ transform: 'translateY(-20%)', opacity: 0 })),
     ]),
 ])
 
+/**
+ * Animacion de arriba hacia abajo
+ */
 export const slideTop = trigger('slidet', [
     transition(':enter', [
-        style({ opacity: 0 , transform: 'translateY(-20%)'}),
+        style({ opacity: 0, transform: 'translateY(-20%)' }),
         animate('1000ms', style({ opacity: 1, transform: 'translateY(0)' })),
     ]),
     transition(':leave', [
-        style({ transform: 'scale(1)', opacity: 1 }),
-        animate('500ms', style({ transform: 'scale(0)', opacity: 0 })),
+        style({ transform: 'translateY(0)', opacity: 1 }),
+        animate('1000ms', style({ transform: 'translateY(20%)', opacity: 0 })),
     ]),
-])
+]);
+
+/**
+ * Animacion de izq hacia der
+ */
+ export const slideRight = trigger('slider', [
+    transition(':enter', [
+        style({ transform: 'scale(0.5)', opacity: 0 }),
+        animate('1.5s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+        style({ transform: 'scale(1)', opacity: 1 }))
+      ]),
+    transition(':leave', [
+        style({ transform: 'translateX0(0)', opacity: 1, position: 'absolute' }),
+        animate('1000ms', style({ transform: 'translateX(20%) translateY(0)', opacity: 0, position: 'absolute', top: '0' })),
+    ]),
+]);
+
+
+/**
+ * Animacion de arriba hacia abajo
+ */
+ export const slideLeft = trigger('slidel', [
+    transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(20%)' }),
+        animate('1000ms', style({ opacity: 1, transform: 'translateX(0)' })),
+    ]),
+    transition(':leave', [
+        style({ transform: 'translateX(0%)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(20%)', opacity: 0 })),
+    ]),
+]);
+
