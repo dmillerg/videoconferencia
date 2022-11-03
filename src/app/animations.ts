@@ -106,3 +106,70 @@ export const slideTop = trigger('slidet', [
     ]),
 ]);
 
+/**
+ * Animacion de arriba hacia abajo
+ */
+ export const bounce = trigger('slidel', [
+    transition(':enter', [
+        style({ transform: 'scale(0.5)', opacity: 0 }),
+        animate('1.5s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+        style({ transform: 'scale(1)', opacity: 1 }))
+      ]),
+    transition(':leave', [
+        style({ transform: 'translateX(0%)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(20%)', opacity: 0 })),
+    ]),
+]);
+
+
+export const slideInAnimation =
+  trigger('routeAnimations', [
+    transition('* <=> *', [
+      style({ position: 'relative' }),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%'
+        })
+      ]),
+      query(':enter', [
+        style({ left: '-100%' })
+      ]),
+      query(':leave', animateChild()),
+      group([
+        query(':leave', [
+          animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ left: '100%' }))
+        ]),
+        query(':enter', [
+          animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ left: '0%' }))
+        ])
+      ]),
+      query(':enter', animateChild()),
+    ]),
+    transition('* <=> consulta', [
+      style({ position: 'relative' }),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%'
+        })
+      ]),
+      query(':enter', [
+        style({ left: '-100%' })
+      ]),
+      query(':leave', animateChild()),
+      group([
+        query(':leave', [
+          animate('200ms ease-out', style({ left: '100%' }))
+        ]),
+        query(':enter', [
+          animate('300ms ease-out', style({ left: '0%' }))
+        ])
+      ]),
+      query(':enter', animateChild()),
+    ])
+  ]);

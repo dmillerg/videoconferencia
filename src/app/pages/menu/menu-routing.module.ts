@@ -12,14 +12,14 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 
 
 const routes: Routes = [
-  { path: 'listado', component: ListadoComponent },
-  { path: 'solicitud', component: SolicitudComponent },
-  { path: 'admin-solicitud', component: AdminSolicitudComponent },
-  { path: 'admin-usuarios', component: AdminUsuariosComponent },
-  { path: 'admin-sindicato-piso', component: AdminSindicatoPisoComponent },
-  { path: 'form-usuario', component: FormUsuariosComponent },
-  { path: 'consultar', component: ConsultaComponent },
-  { path: 'perfil', component: PerfilComponent },
+  { path: 'listado', component: ListadoComponent, data: {animation: 'listado'} },
+  { path: 'solicitud', component: SolicitudComponent, data: {animation: 'solicitud'} },
+  { path: 'admin-solicitud', component: AdminSolicitudComponent, data: {animation: 'admin-solicitud'} },
+  { path: 'admin-usuarios', component: AdminUsuariosComponent, data: {animation: 'admin-usuarios'} },
+  { path: 'admin-sindicato-piso', component: AdminSindicatoPisoComponent, data: {animation: 'admin-sindicato-piso'} },
+  { path: 'form-usuario', component: FormUsuariosComponent, data: {animation: 'form-usuario'} },
+  { path: 'consultar', component: ConsultaComponent, data: {animation: 'consultar'} },
+  { path: 'perfil', component: PerfilComponent, data: {animation: 'perfil'} },
 
 ];
 

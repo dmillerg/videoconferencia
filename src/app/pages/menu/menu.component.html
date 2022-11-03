@@ -1,4 +1,4 @@
-<div class="container" [@slideb]="action">
+<div class="container">
     <div class="row">
         <div class="col-sm-10">
             <div class="search-container text-white position-relative w-100">
@@ -24,7 +24,8 @@
                             tiene notificaciones</div>
                         <div *ngFor="let item of notificaciones" style="white-space: nowrap"
                             class="menu-item rounded text-white small">{{item.nombre}}
-                        <p class="small text-muted">{{item.fecha | date:'dd/MM/yyyy'}} {{item.hora_inicio|date: 'HH:mm a'}} {{item.hora_fin|date: 'HH:mm a'}}</p>
+                            <p class="small text-muted">{{item.fecha | date:'dd/MM/yyyy'}} {{item.hora_inicio|date:
+                                'HH:mm a'}} {{item.hora_fin|date: 'HH:mm a'}}</p>
                         </div>
 
                     </div>
@@ -55,7 +56,9 @@
     </div>
     <div class="row mt-4">
         <div class="col-sm-12">
-            <router-outlet></router-outlet>
+            <div [@routeAnimations]="prepareRoute(outlet)">
+                <router-outlet #outlet="outlet"></router-outlet>
+            </div>
         </div>
     </div>
 </div>

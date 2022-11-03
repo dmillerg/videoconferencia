@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
-import { slideBottom } from 'src/app/animations';
+import { slideBottom, slideInAnimation } from 'src/app/animations';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  animations: [slideBottom]
+  animations: [ slideInAnimation]
 })
 export class MenuComponent implements OnInit {
 
@@ -41,4 +41,7 @@ export class MenuComponent implements OnInit {
     })
   }
 
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
 }
