@@ -52,7 +52,6 @@ export const scale = trigger('scaleAnimation', [
  * Animacion de abajo hacia arriba
  */
 export const slideBottom = trigger('slideb', [
-    state('in', style({ transform: 'translateX(0)' })),
     transition(':enter', [
         query('.text-white', [
             style({ position: 'absolute', top: '100%', left: 0, opacity: 0 }),
@@ -62,18 +61,22 @@ export const slideBottom = trigger('slideb', [
             animate(500, style({
                 top: '-20px', opacity: 1, transform: 'scale(1)'
             }))
-        ])
+        ], { optional: false })
 
     ]),
     transition(':leave', [
         query('.text-white', [
-            
+
             style({ position: 'absolute', top: 0, left: 0 }),
             stagger(-300, [
-                animate('500ms cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1, top: '-40px', transform: 'scale(1.2)' }))
+                animate('500ms cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1, top: '-40px', transform: 'scale(1.2)' })),
+
             ]),
-            animate(500, style({ top: '-100%' }))
-        ])
+            animate(500, style({ top: '-100%' })),
+        ],
+            { optional: false }
+
+        ),
     ])
 ])
 
@@ -148,20 +151,20 @@ export const slideInAnimation =
                     left: 0,
                     width: '100%'
                 })
-            ]),
+            ],  { optional: true }),
             query(':enter', [
                 style({ left: '-100%' })
-            ]),
-            query(':leave', animateChild()),
+            ], { optional: true }),
+            query(':leave', animateChild(), { optional: true }),
             group([
                 query(':leave', [
                     animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ left: '100%' }))
-                ]),
+                ], { optional: true }),
                 query(':enter', [
                     animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ left: '0%' }))
-                ])
+                ], { optional: true })
             ]),
-            query(':enter', animateChild()),
+            query(':enter', animateChild(), { optional: true }),
         ]),
         transition('* <=> consulta', [
             style({ position: 'relative' }),
@@ -172,19 +175,19 @@ export const slideInAnimation =
                     left: 0,
                     width: '100%'
                 })
-            ]),
+            ], { optional: true }),
             query(':enter', [
                 style({ left: '-100%' })
-            ]),
-            query(':leave', animateChild()),
+            ], { optional: true }),
+            query(':leave', animateChild(), { optional: true }),
             group([
                 query(':leave', [
                     animate('200ms ease-out', style({ left: '100%' }))
-                ]),
+                ], { optional: true }),
                 query(':enter', [
                     animate('300ms ease-out', style({ left: '0%' }))
-                ])
+                ], { optional: true })
             ]),
-            query(':enter', animateChild()),
+            query(':enter', animateChild(), { optional: true }),
         ])
     ]);
