@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
-import { slideLeft, slideRight } from 'src/app/animations';
+import { slideBottom, slideLeft, slideRight } from 'src/app/animations';
 import { ApiService } from 'src/app/services/api.service';
 
 
@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
   selector: 'app-solicitud',
   templateUrl: './solicitud.component.html',
   styleUrls: ['./solicitud.component.css'],
-  animations: [slideRight, slideLeft]
+  animations: [slideRight, slideLeft, slideBottom]
 })
 
 
