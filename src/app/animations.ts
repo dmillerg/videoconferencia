@@ -26,7 +26,7 @@ export const triggerAnimation = trigger('openClose', [
 export const listAnimation = trigger('listAnimation', [
     transition('* <=> *', [
         query(':enter',
-            [style({ transform: 'translateY(50%)', opacity: 0 }), stagger('1000ms', animate('1000ms ease-out', style({ transform: 'translateY(0%)', opacity: 1 })))],
+            [style({ transform: 'translateX(50%)', opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ transform: 'translateX(0%)', opacity: 1 })))],
             { optional: true }
         ),
         query(':leave',
@@ -35,7 +35,6 @@ export const listAnimation = trigger('listAnimation', [
         )
     ])
 ]);
-
 
 export const scale = trigger('scaleAnimation', [
     transition(':enter', [
@@ -151,7 +150,7 @@ export const slideInAnimation =
                     left: 0,
                     width: '100%'
                 })
-            ],  { optional: true }),
+            ], { optional: true }),
             query(':enter', [
                 style({ left: '-100%' })
             ], { optional: true }),
@@ -191,3 +190,55 @@ export const slideInAnimation =
             query(':enter', animateChild(), { optional: true }),
         ])
     ]);
+
+
+export const loginAnimation = trigger(
+    'login', [
+    transition(':enter', [
+        query('p',[
+            style({
+                opacity: 0,
+                transform: 'translateY(100%)'
+            }),
+        ]),
+        query('.bi ,.input-container, .btn', [
+            style({ opacity: 0 })
+        ]),
+        query('.input-container', [
+            style({
+                opacity: 0,
+                transform: 'scale(0) translateX(-100%)'
+            }),
+            stagger('500ms', animate('500ms ease-out', style({ opacity: 1, transform: 'scale(1) translateX(0)' }))),
+            animate('500ms ease-out', style({ opacity: 1 }))
+        ]),
+        query('.bi', [
+            animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 }))
+        ]),
+        query('.btn', [
+            animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 , transform: 'rotate(360deg)'}))
+        ]),
+        query('p', [
+            animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 , transform: 'translateY(-0%)'}))
+        ]),
+        
+    ])
+])
+
+export const dvelox = trigger(
+    'dvelox', [
+    transition(':enter', [
+
+        query('.titulo', [
+            style({
+                opacity: 0,
+                width: '100%',
+                margin: 'auto'
+            }),
+            animate(2000, style({ opacity: 1 , })),
+            // animate('2s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({  transform: 'scale(1.5)'})),
+          animate(5000, style({ transform: 'translateX(50%)'}))
+        ])
+
+    ])
+])
