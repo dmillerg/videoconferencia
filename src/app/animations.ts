@@ -213,32 +213,14 @@ export const loginAnimation = trigger(
             animate('500ms ease-out', style({ opacity: 1 }))
         ]),
         query('.bi', [
-            animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 }))
+            animate('500ms cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 }))
         ]),
         query('.btn', [
-            animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 , transform: 'rotate(360deg)'}))
+            animate('500ms cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 , transform: 'rotate(360deg)'}))
         ]),
         query('p', [
-            animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 , transform: 'translateY(-0%)'}))
+            animate('500ms cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 , transform: 'translateY(-0%)'}))
         ]),
         
-    ])
-])
-
-export const dvelox = trigger(
-    'dvelox', [
-    transition(':enter', [
-
-        query('.titulo', [
-            style({
-                opacity: 0,
-                width: '100%',
-                margin: 'auto'
-            }),
-            animate(2000, style({ opacity: 1 , })),
-            // animate('2s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({  transform: 'scale(1.5)'})),
-          animate(5000, style({ transform: 'translateX(50%)'}))
-        ])
-
     ])
 ])

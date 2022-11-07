@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
   selector: 'app-solicitud',
   templateUrl: './solicitud.component.html',
   styleUrls: ['./solicitud.component.css'],
-  animations: [slideRight, slideLeft, slideBottom]
+  animations: [slideRight, slideLeft]
 })
 
 
@@ -59,6 +59,7 @@ export class SolicitudComponent implements OnInit {
     this.getSindicatos();
     this.getUsuarios();
     this.rellenarHorasMin();
+    this.resetHoras();
     this.solicitud.citado_por = this.storage.retrieve('usuario').rol!='admin'? this.storage.retrieve('usuario').id:undefined
   }
 
@@ -87,9 +88,10 @@ export class SolicitudComponent implements OnInit {
     // console.log(this.solicitud);
     // console.log(moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_inicio+':'+this.solicitud.minuto_inicio));
     // console.log(moment(this.selected.year()+'-'+this.selected.month()+'-'+this.selected.date()+' '+this.solicitud.hora_fin+':'+this.solicitud.minuto_fin));
-    const hi = moment(this.selected.year() + '-' + this.selected.month() + '-' + this.selected.date() + ' ' + this.solicitud.hora_inicio + ':' + this.solicitud.minuto_inicio)
-    const hf = moment(this.selected.year() + '-' + this.selected.month() + '-' + this.selected.date() + ' ' + this.solicitud.hora_fin + ':' + this.solicitud.minuto_fin)
+    const hi = moment(this.selected.year() + '-' + this.selected.month() + '-' + this.selected.date() + ' ' + (this.solicitud.hora_inicio>=8?this.solicitud.hora_inicio:parseInt(this.solicitud.hora_inicio)+12) + ':' + this.solicitud.minuto_inicio)
+    const hf = moment(this.selected.year() + '-' + this.selected.month() + '-' + this.selected.date() + ' ' + (this.solicitud.hora_fin>=8?this.solicitud.hora_fin:parseInt(this.solicitud.hora_fin)+12) + ':' + this.solicitud.minuto_fin)
     const formData = new FormData();
+    
     formData.append('nombre', this.solicitud.nombre);
     formData.append('descripcion', this.solicitud.descripcion);
     formData.append('citado_por', this.solicitud.citado_por);
@@ -138,10 +140,6 @@ export class SolicitudComponent implements OnInit {
   }
 
   rellenarHorasMin() {
-    this.solicitud.hora_fin = -1
-    this.solicitud.hora_inicio = -1
-    this.solicitud.minuto_fin = -1
-    this.solicitud.minuto_inicio = -1
     this.minutos_fin = Array(6).fill(0).map((x, i) => i * 10);
 
     if (this.horario == 0) {
@@ -153,12 +151,17 @@ export class SolicitudComponent implements OnInit {
       this.horas_inicio = Array(5).fill(1).map((x, i) => x + i);
       this.minutos_inicio = Array(6).fill(0).map((x, i) => i * 10);
       this.horas_fin = Array(5).fill(1).map((x, i) => x + i);
-    } else {
-      this.horas_inicio = Array(10).fill(8).map((x, i) => x + i);
-      this.minutos_inicio = Array(6).fill(0).map((x, i) => i * 10);
-      this.horas_fin = Array(10).fill(8).map((x, i) => x + i);
-    }
+    } 
     this.error();
+    console.log(this.solicitud);
+    
+  }
+
+  resetHoras(){
+    this.solicitud.hora_fin = -1
+    this.solicitud.hora_inicio = -1
+    this.solicitud.minuto_fin = -1
+    this.solicitud.minuto_inicio = -1
   }
 
   error() {

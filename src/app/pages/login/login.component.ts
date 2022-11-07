@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
-import { listAnimation, loginAnimation, dvelox, slideBottom, slideTop } from 'src/app/animations';
+import { listAnimation, loginAnimation, slideBottom, slideTop } from 'src/app/animations';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  animations: [slideTop, loginAnimation, dvelox]
+  animations: [slideTop, loginAnimation]
 })
 export class LoginComponent implements OnInit {
   usuario: string = '';
