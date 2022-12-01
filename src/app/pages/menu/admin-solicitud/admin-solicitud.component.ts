@@ -76,6 +76,8 @@ export class AdminSolicitudComponent implements OnInit {
   aplicar() {
     this.cambios.forEach((e, i) => {
       const formData = new FormData();
+      console.log(e);
+      
       formData.append('nombre', e.nombre);
       formData.append('descripcion', e.descripcion);
       formData.append('citado_por', e.citado_por.id);
@@ -93,13 +95,13 @@ export class AdminSolicitudComponent implements OnInit {
       this.api.updatVideoConferencia(e.id, formData).subscribe(result => {
         if (i == this.cambios.length - 1) {
           this.getVideoConferencias();
-          this.getTecnicos();
+          // this.getTecnicos();
           this.cambios = [];
         }
       }, error => {
         if (i == this.cambios.length - 1) {
           this.getVideoConferencias();
-          this.getTecnicos();
+          // this.getTecnicos();
           this.cambios = [];
         }
       });
@@ -111,6 +113,7 @@ export class AdminSolicitudComponent implements OnInit {
       this.api.deleteVideoConferencia(e.id).subscribe(result => {
         if (i == this.eliminados.length - 1) {
           this.getVideoConferencias();
+          this.eliminados = [];
         }
       });
     })

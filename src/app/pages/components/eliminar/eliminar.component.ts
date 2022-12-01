@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class EliminarComponent implements OnInit {
 
   @Input() id: number = -1;
+  @Input() descripcion: string = ''
   @Output() emisor: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

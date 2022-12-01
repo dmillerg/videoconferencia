@@ -58,7 +58,8 @@
                 </div>
                 <div class="cont text-center" style="width: 5%;">
                     <div class="icon-content mt-2 w-100 d-flex justify-content-center align-item-center"
-                        style="cursor: pointer;" (click)="eliminando=!eliminando; id = item.id">
+                        style="cursor: pointer;" (click)="eliminando=!eliminando; id = item.id;
+                        comprobarBorrar(item.id)">
                         <img src="assets/icons/trash.png" class="icon" width="25px" height="25px" alt="">
                         <img src="assets/icons/trashhover.apng" class="icon-hover" width="25px" height="25px" alt="">
                     </div>
@@ -76,6 +77,6 @@
             [disabled]="cambios.length==0" (click)="aplicar();">Aplicar
             cambios</button></div>
     <div *ngIf="eliminando">
-        <app-eliminar (emisor)="eliminar($event)"></app-eliminar>
+        <app-eliminar [descripcion]="descripcion" (emisor)="eliminar($event)"></app-eliminar>
     </div>
 </div>

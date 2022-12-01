@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   selector: 'app-admin-usuarios',
   templateUrl: './admin-usuarios.component.html',
   styleUrls: ['./admin-usuarios.component.css'],
-  animations:[slideBottom, listAnimation]
+  animations: [slideBottom, listAnimation]
 })
 export class AdminUsuariosComponent implements OnInit {
 
@@ -19,13 +19,14 @@ export class AdminUsuariosComponent implements OnInit {
   eliminando: boolean = false;
   id: number = -1;
   searchfilter: any = '';
+  descripcion: string = '';
   constructor(private api: ApiService, private storage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.getUsuarios();
     this.getPisos();
     this.searchFilter();
-    this.storage.store('page',"admin-usuarios") 
+    this.storage.store('page', "admin-usuarios")
   }
 
   searchFilter() {
@@ -93,9 +94,21 @@ export class AdminUsuariosComponent implements OnInit {
         this.getPisos();
         this.cambios = [];
         this.eliminando = false;
+        this.descripcion = '';
       })
     } else if (event == 'cancelar') {
       this.eliminando = false;
+      this.descripcion = '';
     }
+  }
+
+  comprobarBorrar(id: number) {
+    this.api.notificaciones(id).subscribe(result => {
+      this.eliminando = true;
+      if (result.length > 0) {
+        this.descripcion = `Este usuario ya ha realizado estas videoconferencias: ${result.map(e=>e.nombre+',')}\n
+         y no va a ser posible eliminarlo. Si aun asi desea eliminarlo, recuerde que los datos de algunas videoconferencias se perderán.`;
+      } else this.descripcion = '';
+    })
   }
 }

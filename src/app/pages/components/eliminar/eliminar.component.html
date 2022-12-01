@@ -1,9 +1,10 @@
 <div class="contenedor pt-4">
     <div class="form-action text-center bg-dark p-4 border border-secondary rounded shadow-lg" style="height: fit-content;">
         <h5 class="h5 text-white my-4">Estas seguro que deseas eliminar</h5>
+        <p class="text-muted small">{{descripcion}}</p>
         <div
             class="d-flex justify-content-center align-item-center flex-row">
-            <button class="btn btn-dark text-white border m-2" (click)="emisor.emit('aceptar')">Aceptar</button>
+            <button class="btn btn-dark text-white border m-2" (click)="emisor.emit('aceptar')" [disabled]="descripcion.length>0">Aceptar</button>
             <button class="btn btn-dark text-white border m-2" (click)="emisor.emit('cancelar')">Cancelar</button>
         </div>
     </div>

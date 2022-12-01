@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
 
   getNotificaciones() {
     this.api.notificaciones(this.storage.retrieve('usuario').id).subscribe(result => {
-      this.notificaciones = result;
+      this.notificaciones = result.filter(e=>e.estado==1);
     })
   }
 
