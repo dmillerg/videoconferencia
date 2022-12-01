@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 center">
-            <img src="assets/icons/edituserhover.apng" width="300px" class="svg-shadow" height="300px" alt="">
+            <img [src]="src" width="300px" class="svg-shadow" height="300px" alt="">
             <p class="small text-muted text-center w-75">Detalles del usuario actual, aqui podra editar sus datos
                 personales siempre y cuando este permitido el cambio que vaya a hacer.</p>
 
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="row d-flex flex-row-reverse btn-row">
-            <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" (click)="rellenarUser()"> Cancelar</button>
+            <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" (click)="rellenarUser();router.navigate(['menu/listado']);"> Cancelar</button>
             <button class="btn btn-dark text-white small w-25 shadow-lg mx-1" [disabled]="validar() || password!=confirm" (click)="editar()"> Editar</button>
         </div>
     </div>

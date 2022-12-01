@@ -1,0 +1,31 @@
+.card-mine{
+    transform: rotateY(0deg) rotateZ(0);
+    transition: all 1500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-mine:hover{
+    transform: rotateY(45deg) rotateZ(2deg);
+    transition: all 1500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.g{
+    transition: all 1500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 1;
+}
+
+.t{
+    transition: all 1500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+}
+/* 
+.card-mine:hover .g{
+    transition: all 1500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+}
+
+.card-mine:hover .t{
+    transform: rotateX(0deg);
+
+    transition: all 1500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 1;
+} */

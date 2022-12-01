@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SessionStorageService } from 'ngx-webstorage';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -12,12 +13,17 @@ export class PerfilComponent implements OnInit {
   usuario: any = {};
   password: string = '';
   confirm: string = '';
+  src: string = 'assets/icons/edituserhover.apng';
   cambiarPass: boolean = false;
   constructor(public storage: SessionStorageService,
-    private api: ApiService) { }
+    private api: ApiService,
+    public router: Router) { }
 
   ngOnInit(): void {
    this.rellenarUser();
+   setTimeout(()=>{
+    this.src = 'assets/icons/edituser.apng'
+   }, 2000)
   }
 
   editar() {
